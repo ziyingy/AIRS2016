@@ -1,6 +1,6 @@
 # AIRS 2016
 
-This is a paper project for AIRS 2016.
+##This is a paper project for AIRS 2016.
 
 The AIRS 2016 proceedings will be published as LNCS. See original LNCS Latex template ./Temp/typeinst.tex
 
@@ -8,6 +8,8 @@ The AIRS 2016 proceedings will be published as LNCS. See original LNCS Latex tem
 Full research paper – 12 pages 
 
 Short research paper – 6 pages, with a poster presentation and/or live/demo presentation (if accepted) 
+
+##Key Dates
 
 17 Jun - Abstract submission deadline	          
 
