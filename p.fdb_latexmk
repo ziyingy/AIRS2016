@@ -1,5 +1,12 @@
 # Fdb version 3
-["pdflatex"] 1463389374 "p.tex" "p.pdf" "p" 1463389374
+["bibtex p"] 1463704340 "p.aux" "p.bbl" "p" 1463704341
+  "./llncs2e/splncs03.bst" 1245025022 33098 4ef5df5462ae7c3cec476a39dec1b7bb ""
+  "b.bib" 1463702859 1614 55f65e1f30bc4bc90c1f1964980273c7 ""
+  "p.aux" 1463704340 354 611f2ad149cfb1d395ae96ac40630c37 ""
+  "p.bcf" 0 -1 0 ""
+  (generated)
+  "p.bbl"
+["pdflatex"] 1463704340 "p.tex" "p.pdf" "p" 1463704341
   "/usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm" 1246382020 996 a18840b13b499c08ac2de96a99eda4bc ""
@@ -60,9 +67,10 @@
   "/usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt" 1458265052 3849859 47b85e27570888bee5d6d5ae6aca944a ""
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
   "llncs.cls" 1396234846 42896 f6a4d06405fdcfda24598954aa02c31a ""
-  "p.aux" 1463389374 260 10993d922348c19bee1e7c3b7be5e58e ""
-  "p.tex" 1463389371 2105 bd6cbbd92d3c8eefa629d7ee8f6cf6ba ""
+  "p.aux" 1463704340 354 611f2ad149cfb1d395ae96ac40630c37 ""
+  "p.bbl" 1463704341 427 8e4cd1f0fdabf720a3c1d91324bbfd1c "bibtex p"
+  "p.tex" 1463704339 2004 fe91f3b56d70f590eb37cd327a44e430 ""
   (generated)
-  "p.log"
   "p.aux"
+  "p.log"
   "p.pdf"

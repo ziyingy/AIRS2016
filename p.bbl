@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem{Microsoft:Tied}
+McSherry, F., Najork, M.: Computing information retrieval performance measures
+  efficiently in the presence of tied scores. In: 30th European Conference on
+  IR Research (ECIR). Springer-Verlag (April 2008),
+  \url{http://research.microsoft.com/apps/pubs/default.aspx?id=57213}
+
+\end{thebibliography}
