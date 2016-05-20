@@ -1,0 +1,9 @@
+p.aux
+p.bbl
+p.log
+p.dvi
+p.blg
+p.pdf
+*~
+*.bak
+p.synctex.gz
