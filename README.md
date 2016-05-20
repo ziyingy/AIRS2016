@@ -1,13 +1,21 @@
-# AIRS 2016
+# Project for AIRS 2016.
 
-##This is a paper project for AIRS 2016.
+##Style and Files
 
 The AIRS 2016 proceedings will be published as LNCS. See original LNCS Latex template ./Temp/typeinst.tex
 
+The llncs templates have been applied to the Latex and Bibtex files.
 
 Full research paper – 12 pages 
 
 Short research paper – 6 pages, with a poster presentation and/or live/demo presentation (if accepted) 
+
+### Files
+content - p.tex
+
+bibliography - b.bib
+
+
 
 ##Key Dates
 
