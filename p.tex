@@ -12,64 +12,74 @@
 \documentclass[runningheads,a4paper]{llncs}
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
+\usepackage{multirow}
 \usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{xcolor}
+\usepackage{times}
+\usepackage[numbers,sort]{natbib}
+\renewcommand{\bibname}{References}
+\renewcommand{\bibsection}{\subsection*{References}~\\[-8ex]}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hyphens]{url}
+\renewcommand{\ttdefault}{cmtt}
 
-\usepackage{url}
 \urldef{\mailsa}\path|{,|
 \urldef{\mailsb}\path|,|
 \urldef{\mailsc}\path| }@unimelb.edu.au|    
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
 
+\input{macros.tex}
+
 \begin{document}
 
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{Lecture Notes in Computer Science:\\Authors' Instructions
-for the Preparation\\of Camera-Ready
-Contributions\\to LNCS/LNAI/LNBI Proceedings}
+\title{How Precise Does Document Scoring Need To Be?}
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{Lecture Notes in Computer Science: Authors' Instructions}
+\titlerunning{Can Ties in Runs be Exploited?}
 
 % the name(s) of the author(s) follow(s) next
 %
 %
-\author{Authors}%
+\author{submitted for anonymous review}%
 %
-\authorrunning{Lecture Notes in Computer Science: Authors' Instructions}
+\authorrunning{How Precise Does Scoring Need To Be?}
 % (feature abused for this document to repeat the title also on left hand pages)
 
 % the affiliations are given next; don't give your e-mail address
 % unless you accept that it will be published
-\institute{University of Melbourne\\
-\mailsa\\
-\mailsb\\
-\mailsc\\
+\institute{
+%% Dept. Computing and Information Systems,\\
+%% The University of Melbourne, Australia\\
+%% \mailsa\\
+%% \mailsb\\
+%% \mailsc\\
 }
 
 
-\toctitle{Lecture Notes in Computer Science}
-\tocauthor{Authors' Instructions}
+\toctitle{How Precise Does Document Scoring Need To Be?}
+\tocauthor{submitted for anonymous review}
 \maketitle
 
+\input{sec0-abstract.tex}
+\input{sec1-intro.tex}
+\input{sec2-ties.tex}
+\input{sec3-trecimpact.tex}
+\input{sec4-roundingoff.tex}
+\input{sec5-conclusion.tex}
 
 
-\begin{abstract}
-The abstract should summarize the contents of the paper and should
-contain at least 70 and at most 150 words. It should be written using the
-\emph{abstract} environment.
-\keywords{some keywords}
-\end{abstract}
 
-
-\section{Introduction}
-\cite{Microsoft:Tied}
-
-\bibliographystyle{llncs2e/splncs03}
-%\begin{thebibliography}{4}
-\bibliography{b}
-%\end{thebibliography}
+\begin{small}
+\renewcommand{\bibsep}{5pt}
+%\bibliographystyle{llncs2e/splncs03}
+\bibliographystyle{abbrvnat}
+\bibliography{strings-shrt,local}
+\end{small}
 
 \end{document}

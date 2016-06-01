@@ -1,0 +1,269 @@
+@inproceedings{mn08ecir,
+abstract = {Abstract.
+The Information Retrieval community uses a variety of performance
+measures to evaluate the effectiveness of scoring functions.
+In this paper, we show how to adapt six popular measures, precision,
+recall, F1, average precision, reciprocal rank, and normalized
+discounted cumulative gain, to cope with scoring functions that are
+likely to assign many tied scores to the results of a search.
+Tied scores impose only a partial ordering on the results, meaning
+that there are multiple possible orderings of the result set, each
+one performing differently.
+One approach to cope with ties would be to average the performance
+values across all possible result orderings; but unfortunately,
+generating result permutations requires super-exponential time.
+The approach presented in this paper computes precisely the same
+performance value as the approach of averaging over all permutations,
+but does so as effciently as the original, tie-oblivious
+measures.},
+author = {Frank Mc{S}herry and Marc Najork},
+pages = "414-421",
+booktitle = ecir,
+hidemonth = {April},
+hideublisher = {Springer-Verlag},
+title = {Computing Information Retrieval Performance Measures Efficiently
+	in the Presence of Tied Scores},
+hideurl = {http://dx.doi.org/10.1007/978-3-540-78646-7_38},
+year = {2008},
+} 
+
+@inproceedings{bv04sigir,
+author    = {C. Buckley and E. M. Voorhees},
+title     = {Retrieval evaluation with incomplete information},
+booktitle = sigir,
+hideaddress = "Sheffield, UK",
+hidemonth = jul,
+pages     = {25--32},
+year      = {2004},
+hideurl       = {http://doi.acm.org/10.1145/1008992.1009000},
+hidedoi       = {10.1145/1008992.1009000},
+}
+
+@incollection{harman05trecbook,
+author = "D. K. Harman",
+booktitle = "{TREC}: Experiment and Evaluation in Information Retrieval",
+chapter = 2,
+editor = "E. M. Voorhees and D. K. Harman",
+pages = "21--52",
+publisher = "MIT Press",
+title = "The {TREC} Test Collections",
+hideaddress = "Cambridge, Massachusetts",
+year = 2005
+}
+
+@incollection{bv05trecbook,
+author = "C. Buckley and E. M. Voorhees",
+title = "Retrieval System Evaluation",
+booktitle = "{TREC}: Experiment and Evaluation in Information Retrieval",
+chapter = 3,
+pages = "53--75",
+editor = "E. M. Voorhees and D. K. Harman",
+publisher = "MIT Press",
+hideaddress = "Cambridge, Massachusetts",
+year = 2005,
+}
+
+
+@inproceedings{mbst15adcs,
+author = "A. Moffat and P. Bailey and F. Scholer and P. Thomas",
+booktitle = adcs,
+title = "{INST}: An Adaptive Metric for
+Information Retrieval Evaluation",
+pages = "5:1--5:4",
+year = 2015,
+hidemonth = dec,
+hideaddress = "Sydney, Australia",
+hideurl = "http://dx.doi.org/10.1145/2838931.2838938",
+}
+
+@inproceedings{bmst15sigir,
+author = "P. Bailey and A. Moffat and F. Scholer
+and P. Thomas",
+title = "User Variability and {IR} System Evaluation",
+booktitle = sigir,
+year = 2015,
+pages = "625-634",
+}
+
+
+
+@inproceedings{mts13cikm,
+author = "A. Moffat and P. Thomas and F. Scholer",
+title = "Users Versus Models: What Observation Tells
+Us About Effectiveness Metrics",
+booktitle = cikm,
+year = 2013,
+hidemonth = nov,
+pages = "659-668",
+hideaddress = "San Francisco, California",
+}
+
+@article{sk08inforet,
+author = "T. Sakai and N. Kando",
+title = "On Information Retrieval Metrics Designed for Evaluation
+With Incomplete Relevance Assessments",
+journal = irj,
+volume = 11,
+number = 5,
+pages = "447--470",
+year = 2008,
+}
+
+@inproceedings{ts06sigir,
+author = {A. Turpin and F. Scholer},
+title = {User Performance Versus Precision Measures for Simple Search Tasks},
+pages = {11--18},
+booktitle = sigir,
+hidemonth = aug,
+hideaddress = "Seattle, Washington",
+year = 2006,
+}
+
+@inproceedings{sc12cikm,
+title = "Stochastic Simulation of Time-Biased Gain",
+author = "M. D. Smucker and C. L. A. Clarke",
+hideaddress = "Maui, Hawaii",
+booktitle = cikm,
+hidepublisher = "ACM Press, New York",
+hidemonth = oct,
+pages = "2040--2044",
+year = 2012,
+}
+
+@inproceedings{sc12sigir,
+title = "Time-Based Calibration of Effectiveness Measures",
+author = "M. D. Smucker and C. L. A. Clarke",
+booktitle = sigir,
+hidepublisher = "ACM Press, New York",
+hidemonth = aug,
+pages = "95--104",
+year = 2012,
+}
+
+@inproceedings{cmzg09cikm,
+author = "O. Chapelle and D. Metzler and Y. Zhang and P. Grinspan",
+title = "Expected Reciprocal Rank for Graded Relevance",
+booktitle = cikm,
+pages = "621--630",
+hideaddress = "Hong Kong, China",
+hidepublisher = "ACM Press, New York",
+year = 2009,
+}
+
+@inproceedings{robertson08sigir,
+title = "A New Interpretation of Average Precision",
+author = "S. Robertson",
+booktitle = sigir,
+hideaddress = "Singapore",
+hidepublisher = "ACM Press, New York",
+hidemonth = jul,
+pages = "689--690",
+year = 2008
+}
+
+@article{mz08acmtois,
+author = "A. Moffat and J. Zobel",
+title = "Rank-Biased Precision for Measurement of
+Retrieval Effectiveness",
+journal = acmtois,
+volume = 27,
+number = 1,
+pages = "2.1--2.27",
+hideurl = "http://doi.acm.org/10.1145/1416950.1416952",
+hidemonth = dec,
+year = 2008,
+hidepublisher = "ACM Press, New York",
+}
+
+@article{jk02acmtois,
+author = {K. J\"arvelin and J. Kek\"al\"ainen},
+title = "Cumulated Gain-Based Evaluation of {IR} Techniques",
+year = 2002,
+journal = acmtois,
+volume = 20,
+number = 4,
+pages = "422--446",
+}
+
+@inproceedings{dupret11spire,
+author    = {G. Dupret},
+title     = {Discounted Cumulative Gain and User Decision Models},
+booktitle = spire,
+year      = {2011},
+pages     = {2--13},
+hideurl        = {http://dx.doi.org/10.1007/978-3-642-24583-1_2},
+address = "Pisa, Italy",
+bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+@inproceedings{dp10sigir,
+author    = {G. Dupret and B. Piwowarski},
+title     = {A User Behavior Model for Average Precision and its Generalization
+to Graded Judgments},
+booktitle = sigir,
+year      = {2010},
+pages     = {531--538},
+hideurl        = {http://doi.acm.org/10.1145/1835449.1835538},
+bibsource = {DBLP, http://dblp.uni-trier.de},
+address = "Geneva, Switzerland",
+}
+
+@inproceedings{moffat13airs,
+author =       {A. Moffat},
+title =        {Seven Numeric Properties of Effectiveness Metrics},
+booktitle = airs,
+year =         2013,
+pages = "1-12",
+hideurl = "http://dx.doi.org/10.1007/978-3-642-45068-6_1",
+hideaddress = "Singapore",
+hidepublisher = "LNCS 8281, Springer",
+}
+
+@inproceedings{tsm13airs,
+author =       {P. Thomas and F. Scholer and A. Moffat},
+title =        {What Users Do: {T}he Eyes Have It},
+booktitle = airs,
+year =         2013,
+pages = "416-427",
+hidepublisher = "LNCS 8281, Springer",
+}
+
+@inproceedings{ya06cikm,
+title={Estimating Average Precision with Incomplete and Imperfect Judgments},
+author={Yilmaz, E. and Aslam, J. A.},
+booktitle=cikm,
+pages={102--111},
+year={2006},
+}
+
+@inproceedings{rwjhg94trec,
+author = "Stephen E. Robertson and Steve Walker and Susan Jones and
+Micheline Hancock-{B}eaulieu and Mike Gatford",
+year = 1994,
+title = "Okapi at {TREC}-3",
+booktitle = trec,
+pages = "109-126",
+}
+
+@inproceedings{pc98sigir,
+author = "Jay M. Ponte and W. Bruce Croft",
+title = "A Language Modeling Approach to Information Retrieval",
+year = 1998,
+pages = "275-281",
+hideurl = {http://doi.acm.org/10.1145/290941.291008},
+booktitle = sigir,
+}
+
+@inproceedings{am06sigir,
+author = "V. N. Anh and A. Moffat",
+title = "Pruned Query Evaluation using Pre-Computed Impacts",
+booktitle = sigir,
+hideeditor = "S. Dumais and E. N. Efthimiadis and D. Hawking and
+K. J{\"{a}}rvelin",
+year = 2006,
+hidemonth = aug,
+hideaddress = "Seattle, Washington",
+hidepublisher = "ACM Press, New York",
+pages = "372--379",
+hideurl = "http://doi.acm.org/10.1145/1148170.1148235",
+}
