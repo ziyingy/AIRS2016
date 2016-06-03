@@ -1,4 +1,4 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{6}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -9,6 +9,12 @@
 V.~N. Anh and A.~Moffat.
 \newblock Pruned query evaluation using pre-computed impacts.
 \newblock In \emph{Proc. SIGIR}, pages 372--379, 2006.
+
+\bibitem[Broder et~al.(2003)Broder, Carmel, Herscovici, Soffer, and
+  Zien]{bchsz03cikm}
+A.~Z. Broder, D.~Carmel, M.~Herscovici, A.~Soffer, and J.~Zien.
+\newblock Efficient query evaluation using a two-level retrieval process.
+\newblock In \emph{Proc. CIKM}, pages 426--434, 2003.
 
 \bibitem[Harman(2005)]{harman05trecbook}
 D.~K. Harman.

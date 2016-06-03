@@ -1,10 +1,140 @@
 \section{Deliberate Score Grouping}
 \label{sec-roundingoff}
 
-\myparagraph{Score Computations}
+We now consider whether the deliberate use of tied scores -- which
+might allow efficiency improvements in the underlying search system
+-- has a discernible effect on retrieval effectiveness.
 
-\myparagraph{Score Fidelity}
+\myparagraph{Score Approximation}
+
+Scoring documents using modern similarity computations involves
+non-trivial amounts of arithmetic, especally if phrase components or
+term proximity components are being used.
+Regimes such as WAND {\citep{bchsz03cikm}} seek to minimize the
+number of documents scored, while still giving rise to exactly the
+same ranking for the top-$k$ documents.
+That is, every document in the first $k$ positions of the ranking
+must be in exactly the ``right'' position relative to the documents
+ahead of it and behind it in the ranking that is generated.
+This is a relatively stringent requirement, and other
+computation-pruning techniques can also be considered that provide
+alternative trade-offs.
+
+Now consider the following weaker requirement: that each document
+must be scored in a manner that guarantees that it is in the correct
+{\emph{band}} of the ranking, where the bands are defined
+geometrically based on a parameter $\rho>1$.
+The bands are defined by the sequence $b_i=1$, and thereafter by
+$b_{i+1}=\lceil{\rho\cdot b_i}\rceil$.
+The $i$\,th band spans the ranks from $b_i$ to $b_{i+1}-1$ inclusive.
+For example, if $\rho=2$, then the bands are $[1\ldots1]$,
+$[2\ldots3]$, $4\ldots7]$, and so on; and if (say) $\rho=1.62$ (the
+golden ratio) the bands are $[1\ldots1]$, $[2\ldots3]$, $[4\ldots6]$,
+$[7\ldots11]$, and so on, with widths given by the Fibonacci
+sequence.
+The smaller the value of $\rho$, the smaller each of the groups is,
+and the closer the approximate ranking is to the ``true'' and exact
+ranking.
+As $\rho$ approaches $1$, the retrieval system is obliged to place
+each of the documents closer and closer to its final ``correct''
+position.
+That is, for a given value of $\rho$, we allow the retrieval system
+to return bands of documents $[b_i\ldots b_{i+1}-1]$, with equal
+scores assumed within each band.
+
+\myparagraph{Effectiveness Score Changes}
+
+Given this framework, it is appropriate to ask: to what extent does
+an allowance for rank-based score imprecision affect retrieval
+effectiveness?
+To respond to this question, we make use of TREC resources, taking
+the same system runs as were already examined in
+Section~\ref{sec-trecimpact}, and in effect mapping all of the
+documents ranked in band $i$ to a synthetic score of $1/i$, as if the
+retrieval system had deliberately not carried out the extra
+computation that would be needed to fully differentiate between the
+approximately $\rho^i$ documents in that band.
+
+\begin{figure}[t]
+\centering
+\rule{0.5mm}{45mm}
+\caption{Variation in metric effectiveness score across a set of
+{\todo{nn}} runs and {\todo{nn}} topics, plotted as a function of
+$\rho$, for three different retrieval effectiveness metrics.
+{\alistair{RR, RBP0.85, AP?}}
+{\alistair{$\rho = 1.05, 1.1, 1.2, 1.4, 1.62, 2.0$, or something like
+that.}}
+{\alistair{Box and whisker plot, as $\rho$ is smaller, the mean score
+difference should get closer to zero, and the variance should also be
+getting smaller.
+RR should be relatively unaffected, the others will have broader
+variance.
+Would be cool in the mean stayed near zero even when $\rho$ is
+relatively large.}}
+\label{fig-scorevariation}}
+\end{figure}
+
+Our first experiment explores the score variance introduced as a
+result of score ``banding'', calculating for a set of runs
+from the {\todo{YYYY}} TREC round the variation in run score
+that results when a given degree of score imprecision is introduced.
+In all cases the score difference calculated is the
+across-permutations computation that was illustrated in
+Section~\ref{sec-ties} when applied to the deliberately-tied
+rankings, compared to the score the same metric achieves on the
+original ranking.
+We followed standard protocols and assumed that unjudged documents
+were not relevant for the purposes of scoring the runs.
+
+Figure~\ref{fig-scorevariation} shows the results of this
+{\alistair{Build the graph, and then discuss what it shows.
+Hopefully it shows something interesting or at least a little bit
+unexpected.}} 
 
 \myparagraph{System Comparison Sensitivity}
+
+Effectiveness measurements are also used to compare systems in a
+pairwise manner.
+In the second experiment, we explore the implications that score
+rounding has on the ability of metrics to differentiate between
+systems.
+The normal approach to comparing systems is to take their computed
+scores across a set of topics, and perform a paired $t$-test to
+explore the null hypothesis that the two systems are in fact the
+same.
+The process of carrying out the $t$-test generates a $p$ value; the
+smaller the $p$ value, the smaller the chance that the two systems
+being comapred are giving the same performance.
+To establish significance, a threshold value $\alpha$ is employed,
+often $\alpha=0.05$, with $p\le\alpha$ being regarded as a
+significant outcome.
+
+\begin{figure}[t]
+\centering
+\rule{0.5mm}{45mm}
+\caption{Variation in $p$ values across system pairs in a set
+of runs, plotted as a function of $\rho$, for three different
+retrieval effectiveness metrics.
+{\alistair{RR, RBP0.85, AP?}}
+{\alistair{$\rho = 1.05, 1.1, 1.2, 1.4, 1.62, 2.0$, or something like
+that.}}
+{\alistair{Box and whisker plot, as $\rho$ is smaller, the mean score
+difference should get closer to zero, and the variance should also be
+getting smaller.
+RR should be relatively unaffected, the others will have broader
+variance.
+Would be cool in the mean stayed near zero even when $\rho$ is
+relatively large.}}
+\label{fig-scorevariation}}
+\end{figure}
+
+To measure the effect that score rounding has on system comparsions,
+we took the {\todo{XX}} topics of the {\todo{YYYY}} TREC collection
+and the {\todo{XXX}} runs associated with it, and computed: (a) a set
+of $p$ values, generated by comparing each pair of systems using the
+metric scores associated with the original set of runs; and then (b)
+the corresponding set of $p$ values, generated when the same runs are
+first mapped into group scores, and the all-permutations averaging
+technique applied.
 
 \myparagraph{Results}
