@@ -7,20 +7,23 @@ Each system that is to be compared generates a ranking, or
 {\emph{run}}, for each of a set of topics, with documents included in
 the run and also ordered within the run on the basis of some computed
 textual {\emph{similarity score}} relative to the given query.
-Example similarity computations include the Okapi BM25 mechanism of
+Possible similarity computations include the Okapi BM25 mechanism of
 {\citet{rwjhg94trec}} and the language modeling techniques of
 {\citet{pc98sigir}}.
+Static score components such as pagerank or other assessments of
+document quality can also be included.
 Those runs are then mapped to numeric {\emph{effectiveness values}}
 using a set of relevance judgments and an {\emph{effectiveness
 metric}}, which generates a single number as an assessment of the
 quality, or utility, of that run in the eyes of the user that is
 presumed to have inspected it.
-Those effectiveness values are then aggregated in some way across
-topics to get an overall performance measure; or are used as the basis
-of a statistical test to (hopefully) determine a question of the form
-``is System A demonstrably better than System~B''.
+Finally, the effectiveness values are aggregated in some way across
+topics to get an overall performance measure; or are used as the
+basis of a statistical test to provide guidance in regard to a
+question of the form ``is System A demonstrably better than
+System~B''.
 
-In this paper we consider the consequences of allowing {\emph{tied
+In this work we consider the consequences of allowing {\emph{tied
 similarity scores}} (or just {\emph{ties}}) in the ranking.
 One obvious issue is that ties admit a level of ambiguity in the
 effectiveness values, and hence (potentially) in the outcome of a
@@ -34,14 +37,14 @@ by ties, and determine whether the presence of ties may have caused
 ambiguity to flow through to system scores.
 In this part of the project we make use of a range of tie-breaking
 regimes, including the rules embedded in the well-known
-{\tt{trec\_eval}} program, and conclude that while ties had the
-potential to be quite significantly disruptive, in practice they did
-not influence the outcomes of the measurements that were undertaken.
+{\tt{trec\_eval}} program, and conclude that while ties have had the
+potential to be significantly disruptive, in practice they did not
+influence the outcomes of the measurements that were undertaken.
 
 A second and related goal is to then ask whether the deliberate
 introduction of ties might be useful in some way.
-For example, a range of ways in which similarity scoring might be
-approximated or otherwise quantized have been suggested over the
+For example, a range of approaches in which similarity scoring might
+be approximated or otherwise quantized have been suggested over the
 years, including the impact-ordered indexes of {\citet{am06sigir}}.
 If we allow that the retrieval system might gain tangible efficiency
 benefits from being permitted to assign low precision scores to
@@ -49,8 +52,8 @@ documents, or even to deliberately choose the precision to which
 particular documents are scored, then we may end up with large
 numbers of ties in the runs that the system generates.
 In this scenario, being able to estimate the extent to which ties can
-be permitted before there is risk in incorrect effectiveness scores
-being generated is a necessary precondition.
+be permitted before there is risk of degraded system retrieval
+effectiveness is an important component of the approximation.
 In experiments using submitted TREC runs, we show that
 {\alistair{something}}.
 
