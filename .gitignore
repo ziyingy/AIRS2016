@@ -4,6 +4,8 @@ p.log
 p.dvi
 p.blg
 p.pdf
+p.fls
+p.synctex.gz
+p.fdb_latexmk
 *~
 *.bak
-p.synctex.gz
