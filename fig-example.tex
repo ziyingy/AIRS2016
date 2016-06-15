@@ -1,6 +1,6 @@
-\newcommand{\tabent}[1]{\makebox[15mm][l]{#1}}
+\newcommand{\tabent}[1]{\makebox[18mm][l]{#1}}
 \begin{tabular}{l|@{\hspace{1.0em}} *{10}{l@{\hspace{1.8em}}}}
-\tabent{rank}
+\tabent{rank, $k$}
 	& 1
 	    & 2
 	    	& 3
@@ -13,7 +13,7 @@
 					    & 10
 \\
 \hline
-\tabent{document}
+\tabent{document, $d_k$}
 	& A
 	    & B
 	        & C
@@ -24,6 +24,18 @@
 				    & H
 				        & I
 					    & J
+\\
+\tabent{gain, $r_k$}
+	& 0
+	    & 0
+	        & 1
+		    & 1
+		        & 0
+			    & 1
+			        & 1
+				    & 0
+				        & 0
+					    & 1
 \\
 \tabent{score}
 	& 9.8
@@ -48,17 +60,5 @@
 				    & \multicolumn{1}{@{}l}{$b_5{=}8$}
 				        &
 				            &
-\\
-\tabent{gain}
-	& 0
-	    & 0
-	        & 1
-		    & 1
-		        & 0
-			    & 1
-			        & 1
-				    & 0
-				        & 0
-					    & 1
 \\
 \end{tabular}
