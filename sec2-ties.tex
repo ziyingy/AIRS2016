@@ -3,24 +3,18 @@
 
 \myparagraph{Terminology}
 
-\begin{figure}[t]
-\centering
-\input{fig-example.tex}
-\caption{Example run showing five equi-score groups.
-\label{fig-example}}
-\end{figure}
-
 We suppose that the similarity scores generated for a query divide
 the document ranking -- the {\emph{run}} -- into groups in which all
 of the documents have the same score.
 Let $b_g$ be the rank in the run at which the $g$\,th equi-score
-group commences, with, by definition, $b_1=1$.
-That is, the $g$\,th group of tied dcouments spans the items
-$[b_g\ldots b_{g+1}-1]$, and contains $b_{g+1}-b_g$ documents.
+group commences, with, by definition, $b_1=1$, and let $e_g$ be the
+rank of the last document in that group, with $b_{g+1}=e_g+1$.
+That is, the $g$\,th group of tied documents spans the items
+$[b_g\ldots e_g]$, and contains $b_{g+1}-b_g$ documents.
 For example, consider the run with scores shown in
 Figure~\ref{fig-example}.
-In this example, the top-$10$ document ranking (with documemts
-labeled consecutively for convenience of reference) is assumed to
+In this example, the top-$10$ document ranking (with documemts given
+single letter labels for convenience of reference) is assumed to
 contain five different computed similarity scores.
 The last row shows a presumed relevance value for each corresponding
 document, with ``$0$'' indicating not relevant and ``$1$'' indicating
@@ -36,22 +30,28 @@ Other metrics such as average precision (AP), rank-biased precision
 computed, based solely on the ``gain'' row, without consideration of
 the document labels or their actual scores.
 
-When scores are include in the evaluation, the situation changes.
-Now documents E and F in the example have the same similarity score,
+\begin{figure}[t]
+\centering
+\input{fig-example.tex}
+\caption{Example run showing five equi-score groups.
+\label{fig-example}}
+\end{figure}
+
+When scores are included in the evaluation, the situation changes.
+Now documents M and S in the example have the same similarity score,
 and are part of the third tied group.
 That means that P@$5$ might be either $2/5$ or $3/5$, depending on
-the tie-breaking rule employed to order E and F.
-Similarly, RR might be $1/2$ or $1/3$, because of the tie between B
-and C and D (but cannot be $1/4$).
+the tie-breaking rule employed to order them.
+Similarly, RR might be $1/2$ or $1/3$, because of the tie between
+documents H and A and C (but cannot be $1/4$).
 
-For notational convenience, we further define $e_g$ to be the rank of
-the last document in the $g$\,th group, that is, $e_k=b_{k+1}-1$;
-define $G_g$ to be the multiset of gain values in the $g$\,th group,
+For notational convenience, we further define $G_g$ to be the
+multiset of gain values in the $g$\,th group,
 %%
 	$G_g =\{r_k\mid b_g \le k \le e_g\}$, 
 %%
-and define $t_g$ to be the total gain associated with the $g$\,th
-group,
+define $s_g=e_g-b_g+1$ to be the size of that group, and define $t_g$
+to be the total gain associated with the $g$\,th group,
 %%
 	$t_g = \sum \{r_k\mid b_g \le k \le e_g\}$.
 %%
@@ -91,9 +91,28 @@ effectiveness metric computations.
 
 \myparagraph{Optimistic and Pessimistic Limits}
 
-A third option is to compute score ranges rather than score values,
-so as to capture the possible variability 
-\todo{more...}
+A third way of scoring runs with ties is to compute the best and
+worst scores that might arise, and then present a score range rather
+than a score value.
+The advantage of this approach is that it makes clear when scores
+contain potential ambiguity, in the same way that the residuals of
+{\citet{mz08acmtois}} provide guidance as to the metric weight
+assigned to unjudged documents.
+To compute an optimistic upper score bound, the $t_g$ relevant
+documents within the $g$\,th group should be assumed to appear in the
+first rank positions, that is, $[b_g\ldots b_g+t_g-1]$, and the
+metric score then computed in the usual way.
+Similarly, to get a pessimistic lower score bound, the $t_g$ relevant
+documents in the group are assumed to appear as a block as deep in
+the run as is possible, at ranks $[e_g-t_g+1\ldots e_g]$.
+In the example shown in Figure~\ref{fig-example}, the ordering ``H
+then A then C'' (and similarly in the other groups) is used to derive
+a lower bound on the score, and the ordering ``A then C then H'' (and
+so on) is used to obtain an upper bound.
+If a document is unjudged, then for many metrics (but notably, not
+for AP or NDCG) it should be assumed to be non-relevant for the
+purposes of establishing the lower bound, and assumed to be relevant
+for the purposes of establishing the upper bound.
 
 \myparagraph{Averaging Across Permutations}
 

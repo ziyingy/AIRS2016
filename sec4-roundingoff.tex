@@ -27,9 +27,9 @@ each document must be scored in a manner that guarantees that it is
 in the correct {\emph{band}} of the ranking, where the bands are
 defined geometrically based on a parameter $\rho>1$.
 More precisely, let $b_1=1$, and thereafter let
-$b_{i+1}=\lceil{\rho\cdot b_i}\rceil$.
-The $i$\,th band, for $i\ge1$, spans the ranks from $b_i$ to
-$b_{i+1}-1$ inclusive.
+$b_{g+1}=\lceil{\rho\cdot b_g}\rceil$.
+The $g$\,th group, for $g\ge1$, spans the ranks from $b_g$ to
+$e_g=b_{g+1}-1$ inclusive.
 For example, if $\rho=2$, then the bands are $[1\ldots1]$,
 $[2\ldots3]$, $[4\ldots7]$, and so on; and if (say) $\rho=1.62$ (the
 golden ratio) the bands are $[1\ldots1]$, $[2\ldots3]$, $[4\ldots6]$,
@@ -43,7 +43,7 @@ each of the documents closer and closer to its final ``correct''
 position, without regard for $k$, the run length.
 That is, for a given value of $\rho$, we allow the retrieval system
 to economize on its computational costs and return bands of documents
-$[b_i\ldots b_{i+1}-1]$, with equal scores assumed within each band.
+$[b_g\ldots e_g]$, with equal scores assumed within each band.
 
 \myparagraph{Worst-Case Bounds}
 
@@ -59,10 +59,10 @@ effectiveness in practice?
 To respond to this question, we make use of TREC resources, taking
 the same system runs as were already examined in
 Section~\ref{sec-trecimpact}, and in effect mapping all of the
-documents ranked in band $i$ to a synthetic score of $1/i$, as if the
+documents ranked in band $g$ to a synthetic score of $1/g$, as if the
 retrieval system had deliberately not carried out the extra
 computation that would be needed to fully differentiate between the
-approximately $\rho^i$ documents in that band.
+approximately $\rho^g$ documents in that band.
 
 \begin{figure}[t!]
 \centering
