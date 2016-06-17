@@ -35,23 +35,24 @@ $[2\ldots3]$, $[4\ldots7]$, and so on; and if (say) $\rho=1.62$ (the
 golden ratio) the bands are $[1\ldots1]$, $[2\ldots3]$, $[4\ldots6]$,
 $[7\ldots11]$, and so on, with widths given by the Fibonacci
 sequence.
-The smaller the value of $\rho$, the smaller each of the groups is,
-and the closer the approximate ranking is to the ``true'' and exact
-ranking.
-As $\rho$ approaches $1$, the retrieval system is obliged to place
-each of the documents closer and closer to its final ``correct''
-position, without regard for $k$, the run length.
-That is, for a given value of $\rho$, we allow the retrieval system
-to economize on its computational costs and return bands of documents
-$[b_g\ldots e_g]$, with equal scores assumed within each band.
+The smaller the value of $\rho$, the smaller the group is that spans
+any given position in the ranking, and the nearer the approximate
+ranking is to the ``true'' and exact ranking.
+In the limit, as $\rho$ approaches $1$, the retrieval system is
+obliged to place each of at its final ``correct'' position; that is,
+$\rho=1$ corresponds to a ``full'' computation in which all document
+relationships are finalized.
+But when $\rho>1$, we allow the retrieval system to economize on its
+computational costs and return bands of documents $[b_g\ldots e_g]$,
+with equal scores assumed within each band.
 
 \myparagraph{Worst-Case Bounds}
 
 It is straightforward to show that the first group containing more
-than one document starts at rank $v=1+\lfloor{1/(\rho-1)}\rfloor$.
+than one document starts at rank $v=b_v=1+\lfloor{1/(\rho-1)}\rfloor$.
 That fact implies that the approximate scoring mechanism is rank-safe
-to depth $v$, and more generally, allows bounds on the imprecision in
-scores to be computed.
+to depth $v-1$, and more generally, allows bounds on the imprecision
+in scores to be computed.
 For example, consider the metric reciprocal rank (RR).
 With the $v$\,th group the first one with multiple documents in it,
 the maximum loss of score that can arise relative to the original is
@@ -60,28 +61,32 @@ given by
 	\Delta\mbox{RR} = \frac{1}{b_v} -
 		\frac{1}{e_v-b_v+1}\sum_{k=b_v}^{e_v} \frac{1}{k} \,,
 \]
-where the limit arises because is assumed that in the original
-ranking, the document at rank $b_v$ is the first one in the ranking
-that is relevant, and that no other documents in that group are
-relevant.
-Some relevant $\Delta$RR values are listed in Table~\ref{tbl-bounds}.
+where the bound arises because the worst situation is when the
+original run has its first relevant document at rank $b_v$, and no
+other document in that group is relevant.
+Table~\ref{tbl-bounds} gives some $\Delta$RR values; when $\rho\le2$,
+all are less than $0.1$.
 
 
 \begin{table}[t]
 \centering
 \input{tbl-bounds.tex}
 \caption{Worst-case metric score differences associated with geometric
-grouping of documents in runs.
+grouping of documents in runs, controlled by parameter $\rho$.
 \label{tbl-bounds}}
 \end{table}
 
 It is also possible to compute worst-case differences for rank-biased
 precision (RBP, see {\citet{mz08acmtois}}).
 In the case of RBP, the maximum difference $\Delta$RBP arises when a
-run has relevant documents in the first half of each group, and
-non-relevant documents in the second half of the group.
-Each of the relevant documents loses a little of its weighting as it
-is smeared across the whole of the group.
+run has relevant documents at every rank in the first half of each
+group, and non-relevant documents at every rank in the second half of
+each group.
+Each of the relevant documents in the multi-item groups then loses a
+fraction of its weighting, because it gets ``smeared'' across the
+whole of the group.
+{\alistair{Need to think about this, argument should probably be on
+weight being half, not number.}}
 Table~\ref{tbl-bounds} includes $\Delta$RBP differences for two
 values of the RBP parameter $p$.
 Recall-based metrics such as average precision (AP) cannot be
@@ -92,18 +97,23 @@ divergence of scores than does RBP are presented in the next
 subsection.
 
 
-\myparagraph{Effectiveness Score Changes}
+\myparagraph{Effectiveness Score Differences in Practice}
 
-Given these upper bounds, it is appropriate to ask: to what extent
-does an allowance for rank-based score imprecision affect retrieval
-effectiveness in practice?
-To respond to this question, we make use of TREC resources, taking
-the same system runs as were already examined in
-Section~\ref{sec-trecimpact}, and in effect mapping all of the
-documents ranked in band $g$ to a synthetic score of $1/g$, as if the
-retrieval system had deliberately not carried out the extra
-computation that would be needed to fully differentiate between the
-approximately $\rho^g$ documents in that band.
+Given these worst-case bounds, the next question we ask is this: to
+what extent does an allowance for rank-based score imprecision affect
+effectiveness scores in practice?
+To respond to this question, we again make use of the 1998 TREC7
+resources, taking the same system runs as were already examined in
+Section~\ref{sec-trecimpact}, and for each run, mapping it to a set
+of equivalent banded runs based on a set of $\rho$ values, with the
+documents ranked in band $g$ in each of those runs assigned a
+synthetic score of $1/g$.
+The original system scores that were part of the TREC7 data were
+ignored as the grouping operation was being carried out, and original
+file order was used as the reference point for each run.
+As in Section~\ref{sec-trecimpact}, five runs in which the scores and
+the assigned ranks were inconsistent were removed from the
+experiment.
 
 \begin{figure}[t!]
 \centering
@@ -121,34 +131,41 @@ approximately $\rho^g$ documents in that band.
 \includegraphics[width=0.49\textwidth]{figs/fig-score-variation-ap.pdf}
 }
 \caption{Variation in metric effectiveness score across a set of $98$
-runs and $50$ topics ($50 \times 98$ points plotted in total in each column), as a
-function of $\rho$, for four different retrieval effectiveness
-metrics.
-\alicia{5 runs had been filtered out. So there are only 98 runs.}
-\alicia{only fliers are plotted as plus marks with colors}
-\alistair{Fonts on axis labels need to be larger.}
-\alicia{Do fonts on axis labels look good now?}
+runs and $50$ topics (that is, there are $50 \times 98$ points
+plotted in each column), as a function of $\rho$, for four different
+retrieval effectiveness metrics.
+The colored points beyond the whiskers represent outliers that are
+below the $10$-percentile or above the $90$-percentile of that
+distribution.
 \label{fig-score-variation}}
 \end{figure}
 
-Our first experiment explores the score variance introduced as a
-result of score ``banding'', calculating for a set of runs from the
-1998 TREC7 experimentation the variation in run score that results
-when a given degree of score imprecision is introduced.
+Figure~\ref{fig-score-variation} shows the results of this
+experimentation, plotted as a sequence of box-whisker elements using
+four different effectiveness metrics and eleven values of $\rho$.
 In all cases the score difference calculated is the
 across-permutations computation that was illustrated in
 Section~\ref{sec-ties} when applied to the deliberately-tied
-rankings, compared to the score the same metric achieves on the
+rankings, subtracted from the score the same metric achieves on the
 original submitted ranking for that same topic.
-(We used our own version of {\tt{trec\_eval}} to ensure that this was
-done consistently.)
-We followed standard protocols and assumed that unjudged documents
-were not relevant for the purposes of scoring the runs.
+(We used a modified version of {\tt{trec\_eval}} to ensure that this
+was done consistently.)
+We also followed standard protocols and assumed that unjudged
+documents were not relevant for the purposes of scoring the runs.
 
-Figure~\ref{fig-score-variation} shows the results of this
-{\alistair{Build the graph, and then discuss what it shows.
-Hopefully it shows something interesting or at least a little bit
-unexpected.}}
+Figure~\ref{fig-score-variation} shows that the average score
+variation arising from the banding process is very small, and that
+there are nearly as many rankings that gain from the approximation
+process as there are that lose from it.
+The two shallow metrics (RR and RBP$0.5$) are more affected than the
+two deep-evaluation metrics (RBP$0.85$ and AP), and show clear
+patterns of behavior.
+In particular, note that difference in the RBP$0.5$ as $\rho$ shifts
+from $1.5$ to $1.6$, and the second group expands from containing one
+document to two documents.
+In all cases in which $\rho\le2$ the first group contains only a
+single document.
+
 
 \begin{figure}[t!]
 \centering
@@ -165,16 +182,34 @@ unexpected.}}
 \subfloat[AP\label{fig-rho-p-value-ap}]{%
 \includegraphics[width=0.49\textwidth]{figs/fig-rho-p-value-ap.pdf}
 }
-\caption{Student $t$-test values when comparing system scores for
-$98$ original-order runs, and the corresponding set of $98$
-grouped-score runs ($98$ points plotted in each column).
-A $p$ value of $1.0$ indicates that the two systems yield identical
-outcomes across the $50$ topics.
-\alistair{Something still incorrect in the RBP0.60 graph?
-Or does the jump at the start now reflect what is happening with RR?
-Check everything!}
+\caption{Distribution of two-tailed $t$-test $p$ values generated by
+comparing system scores for $98$ original-order runs, and the
+corresponding set of $98$ grouped-score runs ($98$ points plotted in
+each column), on each case over a set of $50$ topic scores.
+A $p$ value of $1.0$ indicates that the two sets of rankings have
+identical means across the $50$ topics.
 \label{fig-rho-p-value}}
 \end{figure}
+
+Figure~\ref{fig-rho-p-value} explores whether these small score
+differences can be regarded as being significant.
+To generate the graph, each blocked run was scored for the $50$
+topics, and those $50$ per-topic scores used as input to a paired
+$t$-test, and compared against the $50$ scores produced in connection
+with the ungrouped reference run.
+The higher the $p$ value, the more certain it is that the means of
+the two alternative approaches -- the reference run, and the grouped
+run -- are the same.
+
+As can be seen, {\alistair{more...}}
+
+{\alistair{If don't like the idea of having $p\approx1$ indicating
+the two distributions have the same mean, can change tack, and ask
+(positive) question is treated run scoring $>0.99$ of original run
+scoring.
+Then small $p$ values indicate confidence that the treatment achivese
+effectiveness within (or greater than) one percent of the original
+system.}}
 
 \myparagraph{System Comparison Sensitivity}
 
@@ -222,5 +257,3 @@ metric scores associated with the original set of runs; and then (b)
 the corresponding set of $p$ values, generated when the same runs are
 first mapped into group scores, and the all-permutations averaging
 technique applied.
-
-\myparagraph{Results}
