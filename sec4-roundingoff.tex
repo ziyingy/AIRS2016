@@ -47,9 +47,50 @@ $[b_g\ldots e_g]$, with equal scores assumed within each band.
 
 \myparagraph{Worst-Case Bounds}
 
-\alistair{For RR and RBP can compute upper bounds on the difference
-difference in score that is possible, as a function of
-$\rho$. Maybe can also say something about AP too, who knows.}
+It is straightforward to show that the first group containing more
+than one document starts at rank $v=1+\lfloor{1/(\rho-1)}\rfloor$.
+That fact implies that the approximate scoring mechanism is rank-safe
+to depth $v$, and more generally, allows bounds on the imprecision in
+scores to be computed.
+For example, consider the metric reciprocal rank (RR).
+With the $v$\,th group the first one with multiple documents in it,
+the maximum loss of score that can arise relative to the original is
+given by
+\[
+	\Delta\mbox{RR} = \frac{1}{b_v} -
+		\frac{1}{e_v-b_v+1}\sum_{k=b_v}^{e_v} \frac{1}{k} \,,
+\]
+where the limit arises because is assumed that in the original
+ranking, the document at rank $b_v$ is the first one in the ranking
+that is relevant, and that no other documents in that group are
+relevant.
+Some relevant $\Delta$RR values are listed in Table~\ref{tbl-bounds}.
+
+
+\begin{table}[t]
+\centering
+\input{tbl-bounds.tex}
+\caption{Worst-case metric score differences associated with geometric
+grouping of documents in runs.
+\label{tbl-bounds}}
+\end{table}
+
+It is also possible to compute worst-case differences for rank-biased
+precision (RBP, see {\citet{mz08acmtois}}).
+In the case of RBP, the maximum difference $\Delta$RBP arises when a
+run has relevant documents in the first half of each group, and
+non-relevant documents in the second half of the group.
+Each of the relevant documents loses a little of its weighting as it
+is smeared across the whole of the group.
+Table~\ref{tbl-bounds} includes $\Delta$RBP differences for two
+values of the RBP parameter $p$.
+Recall-based metrics such as average precision (AP) cannot be
+analyzed as readily, because the highest metric score might not
+correspond to the largest number of relevant documents.
+Experimental results showing that practice that AP has less
+divergence of scores than does RBP are presented in the next
+subsection.
+
 
 \myparagraph{Effectiveness Score Changes}
 
