@@ -12,7 +12,7 @@ BEGIN {
 		rbpp = 0.5
 	}
 	# rbp weights
-	w[1] = (1-rbpp)
+	w[1] = (1.0-rbpp)
 	for (k=2; k<stopat; k++) {
 		w[k] = w[k-1]*rbpp
 	}
@@ -42,7 +42,7 @@ BEGIN {
 		}
 		bg = eg+1
 	}
-	printf "RR:      g=%d, bigdiff = %.4f\n", bigdiffg, bigdiff
+	printf "RR:      g=%2d, bigdiff = %.4f\n", bigdiffg, bigdiff
 
 	# RBP rank calculations
 	bg = 1
@@ -51,21 +51,23 @@ BEGIN {
 	for (g=1; g<=ngroups; g++) {
 		eg = int(rho*bg+rounder) - 1
 		if (eg>=stopat) break
-		rel = 0
-		# what does half-relevant look like, in every group
-		for (k=bg; k<=(bg+eg)/2; k++) {
-			diff += 1.0*w[k]
-			rel += 1
-		}
-		# now smear that amount out over that same group
+		totweight = 0.0
 		for (k=bg; k<=eg; k++) {
-			diff -= 1.0*rel/(eg-bg+1)*w[k]
+			totweight += w[k]
 		}
-		if (diff>bigdiff) {
-			bigdiff = diff
-			bigdiffg = g
+		# now start assigning nominal relevants at front of group
+		grbpval = 0.0
+		biggdiff = 0.0
+		for (k=bg; k<=eg; k++) {
+			grbpval += 1.0*w[k]
+			gdiff = grbpval - totweight*(k-bg+1)/(eg-bg+1)
+			if (gdiff > biggdiff) {
+				biggdiff = gdiff
+			}
 		}
+		# now add this block to the others
+		bigdiff += biggdiff
 		bg = eg+1
 	}
-	printf "RBP%.2f: g=%d, bigdiff = %.4f\n", rbpp, bigdiffg, bigdiff
+	printf "RBP%.2f: g=%2d, bigdiff = %.4f\n", rbpp, bigdiffg, bigdiff
 }
