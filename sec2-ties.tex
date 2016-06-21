@@ -13,9 +13,9 @@ That is, the $g$\,th group of tied documents spans the items
 $[b_g\ldots e_g]$, and contains $b_{g+1}-b_g$ documents.
 For example, consider the run with scores shown in
 Figure~\ref{fig-example}.
-In this example, the top-$10$ document ranking (with documemts given
-single letter labels for convenience of reference) is assumed to
-contain five different computed similarity scores.
+This example shows a ranled list of 10 documents, each with 
+single letter labels for convenience, with
+five different computed similarity scores.
 The second row shows a presumed relevance value for each
 corresponding document, with ``$0$'' indicating not relevant and
 ``$1$'' indicating relevant; and the third row lists the similarity
@@ -117,5 +117,16 @@ purposes of establishing the lower bound, and assumed to be relevant
 for the purposes of establishing the upper bound.
 
 \myparagraph{Averaging Across Permutations}
+While the extreme limits of the previous method can be informative, 
+computing the average, or expected, value of a metric across all possible 
+permutations of documents within a tied block of scores is also useful.
+If we assume that every permutation of values is equally likely, 
+then computing the expectation is simply the process of computing the 
+metric for each permutation and taking their average.
+For small blocks of $n$ documents, this $O(n!)$ brute force approach 
+is computationally feasible, but 
+for larger blocks it will take too long.
+Fortunately the summation over all permutations telescopes for most metrics, 
+leading to a more tractable algorithm for computation.
 
 \todo{Discuss {\citet{mn08ecir}}, and describe basis for their formulations}
