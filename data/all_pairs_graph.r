@@ -1,7 +1,7 @@
 #
 # For each system pair
-#   - compute median and 95% range of differences when rho==1 (A)
-#   - compute median and 95% range of differences when rho==2 (B)
+#   - compute median and IQR range of differences when rho==1 (A)
+#   - compute median and IQR range of differences when rho==2 (B)
 # Plot B in order of A
 #
 # Andrew Turpin
@@ -68,7 +68,7 @@ shade_col <- grey(0.7)
 old_col <- grey(0.6)
 new_col <- grey(0.2)
 
-pdf("diffs_sorted_by_orig.pdf")
+pdf("../figs/diffs_sorted_by_orig.pdf")
 options(error=dev.off)
 layout(matrix(1:4,2,2))
 par(mgp=c(2,1,0))
