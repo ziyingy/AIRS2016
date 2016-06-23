@@ -1,11 +1,11 @@
 #
 # For each system pair
-#   - compute median and IQR range of differences when rho==1 (A)
-#   - compute median and IQR range of differences when rho==2 (B)
-# Plot B in order of A
+#   - compute t-test pval for rho == 1 (A)
+#   - compute t-test pval for rho==* (B)
+# Plot A against B
 #
 # Andrew Turpin
-# Thu 23 Jun 2016 06:11:13 AEST
+# Thu 23 Jun 2016 10:53:16 AEST
 #
 
 d <- read.csv('all_scores.csv')
@@ -20,10 +20,7 @@ metrics <- c("RR", "RBP 0.5", "RBP 0.85", "AP")
 # (median, lo 95%, hi 95%)
 ########################################################################
 calc <- function(col1, col2) {
-    delta <- abs(col1 - col2)
-    #qs <- quantile(delta, probs=c(0.5, 0.025, 0.975))
-    qs <- quantile(delta, probs=c(0.5, 0.25, 0.75))
-    return(qs)
+    return(t.test(col1, col2, pair=TRUE)$p.value)
 }
 
 ###########################################################################
@@ -33,8 +30,8 @@ calc <- function(col1, col2) {
 ###    # stats - dim 2: index into systems
 ###    # stats - dim 3: index into rhos
 ###    # stats - dim 4: metric "RR", "RBP05", "RBP085", "AP"
-###    # stats - dim 5: 1 = median, 2 = lo 95%, 3 = hi 95%
-###stats <- array(NA, dim=c(length(systems), length(systems), length(rhos), 4, 3))
+###    # stats - dim 5: pval of t-test
+###stats <- array(NA, dim=c(length(systems), length(systems), length(rhos), 4, 1))
 ###
 ###for (i_rho in 1:length(rhos))
 ###for (i_sys1 in 1:length(systems)) {
@@ -71,7 +68,7 @@ shade_col <- grey(0.7)
 old_col <- grey(0.6)
 new_col <- grey(0.2)
 
-pdf("../figs/diffs_sorted_by_orig.pdf")
+pdf("../figs/p_value_scatter_sys_pairs.pdf")
 options(error=dev.off)
 layout(matrix(1:4,2,2, byrow=TRUE))
 par(mgp=c(2,1,0))
@@ -79,31 +76,18 @@ par(mar=c(3,3,0,0)+0.2)
 
 for (i_rho in 1:length(rhos)) 
 for (i_metric in 1:length(metrics)) {
-    m.o  <- extract(stats[,,1,i_metric,1])
-    lo.o <- extract(stats[,,1,i_metric,2])
-    hi.o <- extract(stats[,,1,i_metric,3])
+    ps1 <- extract(stats[,,1,i_metric,1])
+    ps2 <- extract(stats[,,i_rho,i_metric,1])
 
-    m  <-   extract(stats[,,i_rho,i_metric,1])
-    lo <-   extract(stats[,,i_rho,i_metric,2])
-    hi <-   extract(stats[,,i_rho,i_metric,3])
-
-    o <- order(m.o)
-    plot(m[o], type="n", ylim=c(0, 1), las=1,
-        xlab=ifelse(i_metric >= 3, "System Pair", ""),
-        ylab=ifelse(i_metric %% 2 == 1, 
-            expression(paste("Metric difference ",rho==1," less ", rho==.(rhos[i_rho]))), "")
+    plot(ps1, ps2, xlim=c(0,0.1), ylim=c(0, 0.1), las=1,
+        xlab="p-value of t-test on original",
+        ylab=expression(paste("p-value of t-test (",rho==.(rhos[i_rho]))),
+        pch=19, col=rgb(1,0,0,0.1)
     )
-
-    #polygon(c(1:length(lo), length(hi):1), c(lo[o], rev(hi[o])), col=new_col, border=NA)
-    #polygon(c(1:length(lo), length(hi):1), c(lo.o[o], rev(hi.o[o])), col=old_col, border=NA)
-    segments(1:length(lo.o), lo.o[o], 1:length(hi.o), hi.o[o], col=old_col)
-
-    points(m[o], type="p", pch=19, cex=0.5, col=new_col)
-
-    lines(m.o[o], type="l", pch=19, cex=0.5, col=old_col)
-    abline(h=0, lty=3)
+    abline(v=0.05, h=0.05, lty=3)
 
     text(0, 0.9, metrics[i_metric], pos=4)
+    print(paste(sprintf("%4.1f %10s %3.0f (%6.2f%%)",rhos[i_rho], metrics[i_metric], x<-sum(ps1<=0.05 & ps2>0.05), x/length(ps1)*100)))
 }
 
 dev.off()
