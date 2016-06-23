@@ -79,7 +79,7 @@ for (i_metric in 1:length(metrics)) {
     ps1 <- extract(stats[,,1,i_metric,1])
     ps2 <- extract(stats[,,i_rho,i_metric,1])
 
-    plot(ps1, ps2, xlim=c(0,0.1), ylim=c(0, 0.1), las=1,
+    plot(ps1, ps2, xlim=c(0,1), ylim=c(0, 1), las=1,
         xlab="p-value of t-test on original",
         ylab=expression(paste("p-value of t-test (",rho==.(rhos[i_rho]))),
         pch=19, col=rgb(1,0,0,0.1)
@@ -87,6 +87,19 @@ for (i_metric in 1:length(metrics)) {
     abline(v=0.05, h=0.05, lty=3)
 
     text(0, 0.9, metrics[i_metric], pos=4)
+
+    tl <- sum(ps1<=0.05 & ps2>0.05)
+    tr <- sum(ps1 >0.05 & ps2>0.05)
+    bl <- sum(ps1<=0.05 & ps2<=0.05)
+    br <- sum(ps1 >0.05 & ps2<=0.05)
+
+    text(0.80, 0.2, paste0(round(tl/length(ps1)*100,1), "%"), pos=2)
+    text(0.80, 0.1, paste0(round(bl/length(ps1)*100,1), "%"), pos=2)
+    text(1.00, 0.2, paste0(round(tr/length(ps1)*100,1), "%"), pos=2)
+    text(1.00, 0.1, paste0(round(br/length(ps1)*100,1), "%"), pos=2)
+    segments(c(0.6, 0.8, 1.0), rep(0.05, 3), c(0.6, 0.8, 1.0), rep(0.25, 3))
+    segments(rep(0.6, 3), c(0.05, 0.15, 0.25), rep(1.0, 3), c(0.05, 0.15, 0.25))
+
     print(paste(sprintf("%4.1f %10s %3.0f (%6.2f%%)",rhos[i_rho], metrics[i_metric], x<-sum(ps1<=0.05 & ps2>0.05), x/length(ps1)*100)))
 }
 
