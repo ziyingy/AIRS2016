@@ -97,11 +97,38 @@ for (i_metric in 1:length(metrics)) {
     text(0.80, 0.1, paste0(round(bl/length(ps1)*100,1), "%"), pos=2)
     text(1.00, 0.2, paste0(round(tr/length(ps1)*100,1), "%"), pos=2)
     text(1.00, 0.1, paste0(round(br/length(ps1)*100,1), "%"), pos=2)
-    segments(c(0.6, 0.8, 1.0), rep(0.05, 3), c(0.6, 0.8, 1.0), rep(0.25, 3))
-    segments(rep(0.6, 3), c(0.05, 0.15, 0.25), rep(1.0, 3), c(0.05, 0.15, 0.25))
+    segments(c(0.6, 0.8, 1.0), rep(0.05, 3), c(0.6, 0.8, 1.0), rep(0.25, 3), lty=c(1,3,1))
+    segments(rep(0.6, 3), c(0.05, 0.15, 0.25), rep(1.0, 3), c(0.05, 0.15, 0.25), lty=c(1,3,1))
 
     print(paste(sprintf("%4.1f %10s %3.0f (%6.2f%%)",rhos[i_rho], metrics[i_metric], x<-sum(ps1<=0.05 & ps2>0.05), x/length(ps1)*100)))
 }
+
+    ### plot the four corner percentages varying the cut-off
+cut_offs <- seq(0.05/length(ps1), 0.05, length=10)
+tls <- sapply(cut_offs, function(co) sum(ps1<=co & ps2>co)/length(ps1)*100)
+trs <- sapply(cut_offs, function(co) sum(ps1> co & ps2>co)/length(ps1)*100)
+bls <- sapply(cut_offs, function(co) sum(ps1<=co & ps2<=co)/length(ps1)*100)
+brs <- sapply(cut_offs, function(co) sum(ps1> co & ps2<=co)/length(ps1)*100)
+
+layout(matrix(1:1,1,1))
+par(mar=c(3,3,3,4)+0.2)
+par(mgp=c(3,1,0))
+m <- cbind(tls*50, trs, bls, brs*50)
+matplot(cut_offs, m, type="b", las=1, 
+    xlab="Cut off p-value", 
+    ylab="% in bottom-left and top-right corner",
+    main="% agreement of 'significance' using various p-value cut-offs
+(2 and 3 left scale, 1 and 4 right scale)"
+)
+axis(4, label=(1:8)*10/50, at=1:8*10, las=1)
+mtext("% in top-left and bottom-right corner", 4, 3)
+
+segments(c(4, 4.5, 5)/100, rep(70, 3), c(4, 4.5, 5)/100, rep(80, 3), lty=c(1,3,1))
+segments(rep(4/100, 3), c(70,75,80), rep(5/100, 3), c(70,75,80), lty=c(1,3,1))
+text((4+4.5)/2/100, (75+80)/2, "1", col="black") # tl
+text((4.5+5)/2/100, (75+80)/2, "2", col="red") # tr
+text((4+4.5)/2/100, (70+75)/2, "3", col="green") # bl
+text((4.5+5)/2/100, (70+75)/2, "4", col="blue") # br
 
 dev.off()
 options(error=NULL)
