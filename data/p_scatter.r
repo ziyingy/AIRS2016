@@ -54,6 +54,8 @@ calc <- function(col1, col2) {
 ###        }
 ###    }
 ###}
+###save(stats, metrics, rhos, systems, file="p_scatter.Rdata")
+load(file="p_scatter.Rdata")
 
 ########################################################################
 # plot
@@ -105,30 +107,35 @@ for (i_metric in 1:length(metrics)) {
 
     ### plot the four corner percentages varying the cut-off
 cut_offs <- seq(0.05/length(ps1), 0.05, length=10)
-tls <- sapply(cut_offs, function(co) sum(ps1<=co & ps2>co)/length(ps1)*100)
-trs <- sapply(cut_offs, function(co) sum(ps1> co & ps2>co)/length(ps1)*100)
-bls <- sapply(cut_offs, function(co) sum(ps1<=co & ps2<=co)/length(ps1)*100)
-brs <- sapply(cut_offs, function(co) sum(ps1> co & ps2<=co)/length(ps1)*100)
 
-layout(matrix(1:1,1,1))
 par(mar=c(3,3,3,4)+0.2)
 par(mgp=c(3,1,0))
-m <- cbind(tls*50, trs, bls, brs*50)
-matplot(cut_offs, m, type="b", las=1, 
-    xlab="Cut off p-value", 
-    ylab="% in bottom-left and top-right corner",
-    main="% agreement of 'significance' using various p-value cut-offs
-(2 and 3 left scale, 1 and 4 right scale)"
-)
-axis(4, label=(1:8)*10/50, at=1:8*10, las=1)
-mtext("% in top-left and bottom-right corner", 4, 3)
 
-segments(c(4, 4.5, 5)/100, rep(70, 3), c(4, 4.5, 5)/100, rep(80, 3), lty=c(1,3,1))
-segments(rep(4/100, 3), c(70,75,80), rep(5/100, 3), c(70,75,80), lty=c(1,3,1))
-text((4+4.5)/2/100, (75+80)/2, "1", col="black") # tl
-text((4.5+5)/2/100, (75+80)/2, "2", col="red") # tr
-text((4+4.5)/2/100, (70+75)/2, "3", col="green") # bl
-text((4.5+5)/2/100, (70+75)/2, "4", col="blue") # br
+for (i_metric in 1:length(metrics)) {
+    ps1 <- extract(stats[,,1,i_metric,1])
+    ps2 <- extract(stats[,,11,i_metric,1])
 
+    tls <- sapply(cut_offs, function(co) sum(ps1<=co & ps2>co)/length(ps1)*100)
+    trs <- sapply(cut_offs, function(co) sum(ps1> co & ps2>co)/length(ps1)*100)
+    bls <- sapply(cut_offs, function(co) sum(ps1<=co & ps2<=co)/length(ps1)*100)
+    brs <- sapply(cut_offs, function(co) sum(ps1> co & ps2<=co)/length(ps1)*100)
+
+    m <- cbind(tls*50, trs, bls, brs*50)
+    matplot(cut_offs, m, type="b", las=1, 
+        xlab="Cut off p-value", 
+        ylab="% in bottom-left and top-right corner",
+        main="% agreement of 'significance' using various p-value cut-offs
+    (2 and 3 left scale, 1 and 4 right scale)"
+    )
+    axis(4, label=(1:8)*10/50, at=1:8*10, las=1)
+    mtext("% in top-left and bottom-right corner", 4, 3)
+
+    segments(c(4, 4.5, 5)/100, rep(70, 3), c(4, 4.5, 5)/100, rep(80, 3), lty=c(1,3,1))
+    segments(rep(4/100, 3), c(70,75,80), rep(5/100, 3), c(70,75,80), lty=c(1,3,1))
+    text((4+4.5)/2/100, (75+80)/2, "1", col="black") # tl
+    text((4.5+5)/2/100, (75+80)/2, "2", col="red") # tr
+    text((4+4.5)/2/100, (70+75)/2, "3", col="green") # bl
+    text((4.5+5)/2/100, (70+75)/2, "4", col="blue") # br
+}
 dev.off()
 options(error=NULL)
