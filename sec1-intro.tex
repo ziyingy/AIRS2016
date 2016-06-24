@@ -41,11 +41,12 @@ regimes, including the rules embedded in the well-known
 potential to be significantly disruptive, in practice they did not
 influence the outcomes of the measurements that were undertaken.
 
-A second and related goal is to then ask whether the deliberate
-introduction of ties might be useful in some way.
+A second related goal is to ask whether the deliberate introduction
+of ties might be useful in some way.
 For example, a range of approaches in which similarity scoring might
 be approximated or otherwise quantized have been suggested over the
-years, including the impact-ordered indexes of {\citet{am06sigir}}.
+years, including the quantized document weights of {\citet{mzs94ipm}}
+and the impact-ordered indexes of {\citet{am06sigir}}.
 If we allow that the retrieval system might gain tangible efficiency
 benefits from being permitted to assign low precision scores to
 documents, or even to deliberately choose the precision to which
@@ -54,10 +55,12 @@ numbers of ties in the runs that the system generates.
 In this scenario, being able to estimate the extent to which ties can
 be permitted before there is risk of degraded system retrieval
 effectiveness is an important component of the approximation.
-In experiments using submitted TREC runs, we show that
-{\alistair{something}}.
+In experiments using submitted TREC runs, we show that quite marked
+levels of approximation can be tolerated before system scores change
+significantly, and hence that relatively low-precision scoring can be
+employed if it boosts efficiency.
 
-{\todo{Macros to be used for leaving messages through the paper:}}
-\alicia{done with {\tt{alicia}}.}
-\andrew{done with {\tt{andrew}}.}
-\alistair{done with {\tt{alistair}}.}
+%% {\todo{Macros to be used for leaving messages through the paper:}}
+%% \alicia{done with {\tt{alicia}}.}
+%% \andrew{done with {\tt{andrew}}.}
+%% \alistair{done with {\tt{alistair}}.}
