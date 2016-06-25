@@ -1,0 +1,121 @@
+Working with the original runs, without any pre-processing of them:
+
+--------------------------------------------------
+awk -f sys-top-ran-sco.awk trec7/* | awk -f tie-check.awk               
+
+scoredocties    = 684173 =  13.96%
+systopdocties   =   4687 =  91.01%
+sysdocties      =     98 =  95.15%
+
+scoreviols      =    254 =   0.01%
+systopscoviols  =    151 =   2.93%
+sysscoviols     =      5 =   4.85%
+
+These original runs had the score violations:
+bbn1, ibms98c, KD70000, KD71010q, KD71010s
+
+rankdocties     =      0 =   0.00%
+rankviols       = 358631 =   7.32%
+
+contradictions  =  65195 =   1.33%
+systopcons      =    218 =   4.23%
+syscons         =      7 =   6.80%
+
+These original runs had score/rank contradictions:
+one instance per system
+system, topic, rank
+CLARIT98CLUS, 351, 25, 
+CLARIT98COMB, 351, 51, 
+CLARIT98RANK, 351, 51, 
+LIAClass, 351, 4, 
+nectitech, 351, 30, 
+nectitechall, 356, 1, 
+nectitechdes, 356, 1, 
+--------------------------------------------------
+
+Then with a proper resorting of the runs:
+-- primary key by decreasing score, including exponential format
+-- secondary key by increasing rank
+awk -f sys-top-ran-sco.awk trec7/* \
+        | sort -k1,1 -k2,2 -k4gr,4 -k3,3 \
+	        | awk -f tie-check.awk
+
+scoredocties    = 684173 =  13.96%
+systopdocties   =   4687 =  91.01%
+sysdocties      =     98 =  95.15%
+
+scoreviols      =      0 =   0.00%
+systopscoviols  =      0 =   0.00%
+sysscoviols     =      0 =   0.00%
+
+rankdocties     =      0 =   0.00%
+rankviols       =  67137 =   1.37%
+
+contradictions  =  67137 =   1.37%
+systopcons      =    218 =   4.23%
+syscons         =      7 =   6.80%
+
+--------------------------------------------------
+
+Plus, just for fun, the wrong re-sorting:
+awk -f sys-top-ran-sco.awk trec7/* \
+	| sort -k1,1 -k2,2 -k4nr,4 -k3,3 \
+	| awk -f tie-check.awk
+
+scoredocties    = 684173 =  13.96%
+systopdocties   =   4687 =  91.01%
+sysdocties      =     98 =  95.15%
+
+scoreviols      =    254 =   0.01%
+systopscoviols  =    151 =   2.93%
+sysscoviols     =      5 =   4.85%
+
+rankdocties     =      0 =   0.00%
+rankviols       =  67391 =   1.38%
+
+contradictions  =  67137 =   1.37%
+systopcons      =    218 =   4.23%
+syscons         =      7 =   6.80%
+
+Still don't get back to the originals...
+--------------------------------------------------
+
+Then on trec8 runs, using archived order:
+
+awk -f sys-top-ran-sco.awk trec8/* | awk -f tie-check.awk
+
+scoredocties    = 692941 =  11.03%
+systopdocties   =   5919 =  91.77%
+sysdocties      =    121 =  93.80%
+
+scoreviols      =    135 =   0.00%
+systopscoviols  =    109 =   1.69%
+sysscoviols     =      4 =   3.10%
+
+rankdocties     =      0 =   0.00%
+rankviols       = 405762 =   6.46%
+
+contradictions  = 108383 =   1.72%
+systopcons      =    360 =   5.58%
+syscons         =      8 =   6.20%
+
+and using re-sorted order
+
+awk -f sys-top-ran-sco.awk trec8/* \
+        | sort -k1,1 -k2,2 -k4gr,4 -k3,3 \
+	        | awk -f tie-check.awk
+
+scoredocties    = 692941 =  11.03%
+systopdocties   =   5919 =  91.77%
+sysdocties      =    121 =  93.80%
+
+scoreviols      =      0 =   0.00%
+systopscoviols  =      0 =   0.00%
+sysscoviols     =      0 =   0.00%
+
+rankdocties     =      0 =   0.00%
+rankviols       = 112066 =   1.78%
+
+contradictions  = 112066 =   1.78%
+systopcons      =    360 =   5.58%
+syscons         =      8 =   6.20%
