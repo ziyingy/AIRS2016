@@ -18,23 +18,23 @@ metric}}, which generates a single number as an assessment of the
 quality, or utility, of that run in the eyes of the user that is
 presumed to have inspected it.
 Finally, the effectiveness values are aggregated in some way across
-topics to get an overall performance measure which is often used, with suitable statitstics,
-as a basis for answering the question
-``is System A demonstrably better than System~B?''.
+topics to get an overall performance measure which is often used,
+with a suitable statistical test, as a basis for answering the
+question ``is System A demonstrably better than System~B?''.
 
 In this work we consider the consequences of allowing {\emph{tied
 similarity scores}} (or just {\emph{ties}}) in the ranking.
-One obvious issue is that ties admit a level of ambiguity in the
-effectiveness metric values, and hence (potentially) in the outcome of a
-system versus system comparison, since a group of documents that all
-share the same computed similarity score could be presented to the
-user in any permutation that is consistent with the scores being
+The obvious issue is that ties admit a level of ambiguity in the
+effectiveness metric values, and hence (potentially) in the outcome
+of a system versus system comparison, since a group of documents that
+all share the same computed similarity score could be presented to
+the user in any permutation that is consistent with the scores being
 non-increasing.
 Our first goal is thus to quantify the extent to which past Text
 Retrieval Conference (TREC) evaluation exercises have been affected
-by tied similarity scores, and determine whether the presence of these 
-ties may have caused
-ambiguity to flow through to system scores.
+by tied similarity scores, and determine whether the presence of
+ties may have caused ambiguity to flow through into system
+scores.
 In this part of the project we make use of a range of tie-breaking
 regimes, including the rules embedded in the well-known
 {\tt{trec\_eval}} program, and conclude that while ties have had the
@@ -53,10 +53,10 @@ documents, or even to deliberately choose the precision to which
 particular documents are scored, then we may end up with large
 numbers of ties in the runs that the system generates.
 In this scenario, being able to estimate the extent to which ties can
-be permitted before there is risk of degraded system retrieval
+be tolerated before there is risk of degraded system retrieval
 effectiveness is an important component of the approximation.
 In experiments using submitted TREC runs, we show that quite marked
-levels of approximation can be tolerated before system scores change
+levels of approximation can be allowed before system scores change
 significantly, and hence that relatively low-precision scoring can be
 employed if it boosts efficiency.
 
