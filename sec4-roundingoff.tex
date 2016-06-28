@@ -148,7 +148,7 @@ runs and $50$ topics (that is, $50 \times 80$ points are plotted in
 each column), as a function of $\rho$, for four different retrieval
 effectiveness metrics.
 The whiskers indicate the last outlier still within $1.5$ of the
-inter-quartile range from the corresponding quartlie (the limits of
+inter-quartile range from the corresponding quartile (the limits of
 the boxes), and then further outliers are plotted as separate colored
 points.
 \label{fig-score-variation}}
@@ -194,9 +194,7 @@ single document.
 \caption{Number of systems (maximum $80$) for which a $t$-test across
 $50$ topics yields confidence at the $p\le0.05$ level that the
 grouped runs yield a metric score greater than or equal to $99$\%
-(left) and $95$\% (right) of the original run score.
-{\alistair{Table needs to be update to $80$ systems rather than $75$,
-needs RHS filled in.}}
+(left) and $97$\% (right) of the original run score.
 \label{tbl-frac-significant}}
 \end{table}
 
@@ -231,7 +229,7 @@ Table~\ref{tbl-frac-significant} explores whether the small score
 differences identified in Figure~\ref{fig-score-variation} can be
 regarded as being significant.
 To generate the table, each of the $80$ systems was scored for the
-$50$ topics using the original runs, and then rescored using the
+$50$ topics using the original runs, and then re-scored using the
 grouped runs.
 The set of original topic scores was then multiplied by $0.99$, and
 compared to the grouped scores, using a one-tail paired $t$-test.
@@ -241,22 +239,18 @@ process degraded the system score by $1$\% or less.
 The closer the count of such systems is to $80$, the greater the
 confidence we can have that the grouping process will not give
 notably inferior system scores overall, where ``notably inferior'' is
-defined (here) as being a $1$\% degradation in measured score.
-
-As can be seen, {\alistair{more...}}
-{\alistair{RHS shows similar, with $95$\% ratio.}}
-
-%% {\alistair{If still don't like the idea of having $p\approx1$
-%% indicating the two distributions have the same mean, can change tack,
-%% and ask (positive) question, ``is treated run scoring $>0.99$ of
-%% original run scoring''.
-%% Then small $p$ values indicate confidence that the treatment (ie,
-%% grouping) achieves effectiveness within (or greater than) one percent
-%% of the original system.}}
-%% 
-%% {\andrew{all possible 1024 of length 10?}}
-%% {\andrew{I still don't like not being able to see the original metric value. 
-%% What is a difference of 0.1 compared to the original values?}}
+defined (at first) as being a $1$\% degradation in measured score.
+Those values are shown in the left half of
+Table~\ref{tbl-frac-significant}, and the corresponding counts when
+``notably inferior'' is defined as being a $3$\% degradation are
+shown in the right half.
+The anticipated relationship between $\rho$ and score fidelity is
+supported by the table -- shallow metrics (RR, and RBP0.5) are less
+sensitive to the value of $\rho$ used than are deeper metrics, and as
+$\rho$ increases, the possible implications of changes in score also
+increase.
+When the ``tolerable degradation limit'' was further reduced to
+$95$\%, all $16$ entries for metric and $\rho$ were $80$.
 
 \myparagraph{System Comparison Sensitivity}
 
