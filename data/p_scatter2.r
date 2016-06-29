@@ -7,7 +7,7 @@
 # Fri 24 Jun 2016 18:16:31 AEST
 #
 
-d <- read.csv('all_scores.csv')
+d <- read.csv('all_scores_new.csv')
 
 load(file="p_scatter.Rdata")
 ###    # stats - dim 1: index into systems

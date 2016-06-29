@@ -8,11 +8,12 @@
 # Thu 23 Jun 2016 10:53:16 AEST
 #
 
-d <- read.csv('all_scores.csv')
+#d <- read.csv('all_scores.csv')
+d <- read.csv('all_scores_new.csv')
 
 systems <- unique(d$system)
 rhos <- unique(d$rho)
-metrics <- c("RR", "RBP 0.5", "RBP 0.85", "AP")
+metrics <- c("RR", "RBP0.5", "RBP0.85", "AP")
 
 ########################################################################
 # Given 50 scores sorted by topic in col1, col2, 
@@ -66,11 +67,14 @@ extract <- function(m) {
     return(m[!z])
 }
 
-shade_col <- grey(0.7)
-old_col <- grey(0.6)
-new_col <- grey(0.2)
+              # RR        #RBP        #RBP      #AP
+cols <- NULL
+for (cc in c("#2ca02c", "#ff7f0e", "#ff7f0e", "#1f77b4")) {
+    ccc <- col2rgb(cc)/255
+    cols <- c(cols, rgb(ccc[1], ccc[2], ccc[3], 0.2))
+}
 
-pdf("../figs/p_value_scatter_sys_pairs.pdf")
+pdf("../figs/p_value_scatter_sys_pairs.pdf", family="Times")
 options(error=dev.off)
 layout(matrix(1:4,2,2, byrow=TRUE))
 par(mgp=c(2,1,0))
@@ -81,24 +85,26 @@ for (i_metric in 1:length(metrics)) {
     ps1 <- extract(stats[,,1,i_metric,1])
     ps2 <- extract(stats[,,i_rho,i_metric,1])
 
-    plot(ps1, ps2, xlim=c(0,1), ylim=c(0, 1), las=1,
-        xlab="p-value of t-test on original",
-        ylab=expression(paste("p-value of t-test (",rho==.(rhos[i_rho]))),
-        pch=19, col=rgb(1,0,0,0.1)
+    if (i_metric > 2)       xlab <- bquote(paste("p-value (",rho==1, ")")) else xlab <- ""
+    if (i_metric %% 2 == 1) ylab <- bquote(paste("p-value (",rho==.(rhos[i_rho]), ")")) else ylab <- ""
+    plot(ps1, ps2, xlim=c(0,1), ylim=c(0, 1), las=1, 
+        xlab=xlab, ylab=ylab, 
+        pch=19, 
+        col=cols[i_metric]
     )
     abline(v=0.05, h=0.05, lty=3)
 
-    text(0, 0.9, metrics[i_metric], pos=4)
+    text(0.1, 0.9, metrics[i_metric], pos=4)
 
     tl <- sum(ps1<=0.05 & ps2>0.05)
     tr <- sum(ps1 >0.05 & ps2>0.05)
     bl <- sum(ps1<=0.05 & ps2<=0.05)
     br <- sum(ps1 >0.05 & ps2<=0.05)
 
-    text(0.80, 0.2, paste0(round(tl/length(ps1)*100,1), "%"), pos=2)
-    text(0.80, 0.1, paste0(round(bl/length(ps1)*100,1), "%"), pos=2)
-    text(1.00, 0.2, paste0(round(tr/length(ps1)*100,1), "%"), pos=2)
-    text(1.00, 0.1, paste0(round(br/length(ps1)*100,1), "%"), pos=2)
+    text(0.80, 0.2, sprintf("%4.1f%%",tl/length(ps1)*100), pos=2)
+    text(0.80, 0.1, sprintf("%4.1f%%",bl/length(ps1)*100), pos=2)
+    text(1.00, 0.2, sprintf("%4.1f%%",tr/length(ps1)*100), pos=2)
+    text(1.00, 0.1, sprintf("%4.1f%%",br/length(ps1)*100), pos=2)
     segments(c(0.6, 0.8, 1.0), rep(0.05, 3), c(0.6, 0.8, 1.0), rep(0.25, 3), lty=c(1,3,1))
     segments(rep(0.6, 3), c(0.05, 0.15, 0.25), rep(1.0, 3), c(0.05, 0.15, 0.25), lty=c(1,3,1))
 
