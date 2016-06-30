@@ -45,16 +45,19 @@ A second related goal is to ask whether the deliberate introduction
 of ties might be useful in some way.
 For example, a range of approaches in which similarity scoring might
 be approximated or otherwise quantized have been suggested over the
-years, including the quantized document weights of {\citet{mzs94ipm}}
-and the impact-ordered indexes of {\citet{am06sigir}}.
+years including, for example
+%% the quantized document weights of {\citet{mzs94ipm}} and the
+the impact-ordered indexes of {\citet{am06sigir}}.
 If we allow that the retrieval system might gain tangible efficiency
-benefits from being permitted to assign low precision scores to
-documents, or even to deliberately choose the precision to which
-particular documents are scored, then we may end up with large
-numbers of ties in the runs that the system generates.
-In this scenario, being able to estimate the extent to which ties can
+benefits from assigning low precision scores to
+documents,
+%% or even to deliberately choose the precision to which
+%% particular documents are scored,
+then we may end up with large
+numbers of ties in the runs that the system generates,
+and being able to estimate the extent to which ties can
 be tolerated before there is risk of degraded system retrieval
-effectiveness is an important component of the approximation.
+effectiveness is a key component of the approximation.
 In experiments using submitted TREC runs, we show that quite marked
 levels of approximation can be allowed before system scores change
 significantly, and hence that relatively low-precision scoring can be

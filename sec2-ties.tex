@@ -22,15 +22,13 @@ to be the total gain associated with the $g$\,th group,
 %%
 	$t_g = \sum \{r_k\mid b_g \le k \le e_g\}$.
 %%
-For example, consider the run with scores shown in
-Figure~\ref{fig-example}.
-This example shows a ranked list of ten documents, each with a single
-letter label for convenience, with five different computed similarity
+For example, consider the ten-item ranking with scores shown in
+Figure~\ref{fig-example}, with each document given a single letter
+label for convenience, and with five different computed similarity
 scores.
 The second row shows a presumed relevance value for each
-corresponding document, with ``$0$'' indicating not relevant and
-``$1$'' indicating relevant; and the third row lists the similarity
-scores that are presumed to have led to that ranking.
+corresponding document (``$0$'' and ``1''); and the third row lists
+the similarity scores that are presumed to have led to that ranking.
 
 If the scores are ignored and only the list of relevance values is
 employed, computation of (for example) the metric precision at depth
@@ -51,7 +49,7 @@ labels in the first row, or their scores in the second row.
 \label{fig-example}}
 \end{figure}
 
-When scores are included in the evaluation, the situation changes.
+When scores are included, the situation changes.
 Now documents M and S can be seen to have the same similarity score,
 and are part of a tied group.
 That means that P@$5$ might be either $2/5$ or $3/5$, depending on
@@ -74,9 +72,9 @@ than is captured in the final score, perhaps via further precision in
 the internal computation above and beyond what is passed to the
 evaluation regime, or perhaps via a secondary-key ordering process
 that is not part of the scores at all.
-However the system's ordering arises, it is clear that respecting the
-sequential presentation of documents is a plausible default way of
-handling tied scores.
+However the system's ordering arises, respecting the sequential
+presentation of documents is a plausible default way of handling tied
+scores.
 
 \myparagraph{External Tie-Break Rule}
 

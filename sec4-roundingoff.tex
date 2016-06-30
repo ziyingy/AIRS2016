@@ -1,9 +1,10 @@
 \section{Deliberate Score Grouping}
 \label{sec-roundingoff}
 
-We now consider whether the deliberate use of tied scores -- which
-might allow efficiency improvements in the underlying search system
--- has a discernible effect on retrieval effectiveness.
+We now consider whether the deliberate use of tied scores
+%% -- which might allow efficiency improvements in the
+%% underlying search system --
+has a discernible effect on retrieval effectiveness.
 
 \myparagraph{Score Approximation}
 
@@ -275,11 +276,11 @@ significant outcome.
 \includegraphics[width=0.98\textwidth,page=5]{figs/p_value_scatter_sys_pairs.pdf}
 \caption{Correlation of $p$ values for all pairs of systems
 ($80\times79/2=3{,}160$ points per pane), with the $p$ value from a
-paired $t$-test using the original system scores across $50$ topics plotted
-on the horizontal axis, and the $p$ value for the corresponding
-grouped run for on the vertical axis, using $\rho=1.4$ throughout.
-The dotted lines mark the $p=0.05$ regions, with the grid of values
-showing the percentage of data points falling in each quadrant.
+paired $t$-test using the original system scores across $50$ topics
+plotted on the horizontal axis, and the $p$ value for the
+corresponding grouped run ($\rho=1.4$) on the vertical axis.
+The dotted lines at are $p=0.05$, with the grid showing the
+percentage of data points in each quadrant.
 \label{fig-pair-variation}}
 \end{figure}
 
@@ -293,4 +294,15 @@ Section~\ref{sec-ties} were used; when $\rho=1$, each run was
 processed in resorted-by-score order, and then the scores were
 discarded.
 
-Figure~\ref{fig-pair-variation} shows {\alistair{more...}}
+Figure~\ref{fig-pair-variation} shows that score grouping has almost
+no effect at all on the ability to distinguish between systems using
+a statistical test (the {\emph{discrimination ratio}} of the metric,
+see {\citet{sakai07sigir}}), across the four metrics used in our
+experiments.
+For example, the plot in the lower-right for AP shows when $\rho=1.0$
+that $62.2$\% of the system pairs yield ``significant at $p=0.05$''
+comparison outcomes; at $\rho=1.4$, that fraction is $62.1\%$, with
+only $0.1$\% of false positives, and $0.2$\% false negatives.
+The situation is similar for the other metrics with the varying
+discrimination ratios (down to $45$\% for RR) as expected, varying
+with the effective depth of the evaluation.
