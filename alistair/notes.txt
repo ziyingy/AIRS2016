@@ -11,9 +11,6 @@ scoreviols      =    254 =   0.01%
 systopscoviols  =    151 =   2.93%
 sysscoviols     =      5 =   4.85%
 
-These original runs had the score violations:
-bbn1, ibms98c, KD70000, KD71010q, KD71010s
-
 rankdocties     =      0 =   0.00%
 rankviols       = 358631 =   7.32%
 
@@ -21,7 +18,10 @@ contradictions  =  65195 =   1.33%
 systopcons      =    218 =   4.23%
 syscons         =      7 =   6.80%
 
-These original runs had score/rank contradictions:
+These runs have row/score contradictions:
+bbn1, ibms98c, KD70000, KD71010q, KD71010s
+
+These runs have score/rank contradictions:
 one instance per system
 system, topic, rank
 CLARIT98CLUS, 351, 25, 
@@ -31,6 +31,7 @@ LIAClass, 351, 4,
 nectitech, 351, 30, 
 nectitechall, 356, 1, 
 nectitechdes, 356, 1, 
+
 --------------------------------------------------
 
 Then with a proper resorting of the runs:

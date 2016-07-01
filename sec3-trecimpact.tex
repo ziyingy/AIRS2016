@@ -6,9 +6,9 @@
 In this section we examine the role that ties may have had on past
 TREC evaluations.
 The primary resource we make use of are the $103$ runs submitted as
-part of the 2008 TREC7 Ad-Hoc experimentation round, see
-{\small\url{trec.nist.gov}}, and {\citet{harman05trecbook}} for a
-broad overview.
+part of the 2008 TREC7 Ad-Hoc experimentation round
+{\citep{vh98trec}}, see {\small\url{trec.nist.gov}}, and
+{\citet{harman05trecbook}} for a broad overview.
 Each run is a list of (up to) $1{,}000$ responses from that system
 for each of $50$ topics, with each row in the run file including
 fields for {\emph{docnum}}, {\emph{rank}}, and {\emph{score}}.
@@ -171,9 +171,12 @@ ranges less than $10^{-4}$ when averaged across topics.
 
 \myparagraph{Ties in Other Years}
 
-{\alistair{Brief summary (no tables or graphs) of some other TREC
-rounds.}}
-{\alistair{TREC8: Similar percentages of ties and score/rank
-contradictions, and ditto after resorting.}}
-{\alistair{Right now it can only take three lines.}}
-{\alistair{Right now it can only take four lines.}}
+We carried out the same analysis on several other TREC rounds, and
+found similar rates of tied scores in general
+(Table~\ref{tbl-trec7-ties}), and instances of systems with wide
+potential score ranges.
+However we found no further years in which the ordering of the
+top few systems might have been affected by the tie-breaking rule
+employed.
+
+

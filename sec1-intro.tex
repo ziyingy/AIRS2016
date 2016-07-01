@@ -10,7 +10,7 @@ textual {\emph{similarity score}} relative to the given query.
 Possible similarity computations include the Okapi BM25 mechanism of
 {\citet{rwjhg94trec}} and the language modeling techniques of
 {\citet{pc98sigir}}.
-Static score components such as pagerank or other assessments of
+Static score components such as Pagerank or other assessments of
 document quality can also be included.
 Those runs are then mapped to numeric {\emph{effectiveness values}}
 using a set of relevance judgments and an {\emph{effectiveness
@@ -46,7 +46,7 @@ of ties might be useful in some way.
 For example, a range of approaches in which similarity scoring might
 be approximated or otherwise quantized have been suggested over the
 years including, for example
-%% the quantized document weights of {\citet{mzs94ipm}} and the
+the quantized document weights of {\citet{mzs94ipm}}, or
 the impact-ordered indexes of {\citet{am06sigir}}.
 If we allow that the retrieval system might gain tangible efficiency
 benefits from assigning low precision scores to
