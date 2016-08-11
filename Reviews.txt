@@ -1,0 +1,182 @@
+Dear Alistair, 
+
+We are pleased to inform you that your paper titled: How Precise Does
+Document Scoring Need To Be?  has been accepted for publication as a
+*full paper* on AIRS 2016.
+
+AIRS 2016 received 57 valid paper submissions, out of which 21 were
+accepted as full papers, with an acceptance rate of 36.8%.
+
+We ensured that the decisions on borderline submissions were made after
+thorough review and discussion among senior program committee members.
+
+Each accepted full paper will be assigned an oral presentation slot during
+the conference.  Please find the reviews for your paper below.  We hope
+they will help you improve your paper.  Additional details regarding
+the presentation, and instructions on preparation of the camera ready
+version, will be distributed in the near future.
+
+We thank you for your submission and look forward to seeing you on AIRS
+2016 in Beijing.
+
+Best regards,
+
+ Min Zhang and Yi Chang
+ AIRS 2016 PC Chairs
+
+
+----------------------- REVIEW 1 ---------------------
+PAPER: 33
+TITLE: How Precise Does Document Scoring Need To Be?
+AUTHORS: Ziying Yang, Alistair Moffat and Andrew Turpin
+
+OVERALL EVALUATION: -1 (Weak reject)
+REVIEWER'S CONFIDENCE: 4 (Expert: Expert in this problem area)
+Originality of work: 2 (Conventional: Rather straightforward, a number of people could have come up with this)
+Potential impact of results: 1 (Low: Will likely have no impact)
+Technical soundness: 2 (Poor: Potentially reasonable approach, but some claims lack justification)
+Quality of presentation: 3 (Reasonable: Understandable to a large extent, but parts of the paper need more work)
+Adequacy of citations: 2 (Inadequate: Literature review misses many important past papers)
+Recommend as a short paper: no
+
+----------- Review -----------
+Tied scores is not a very new topic in the area and several previous
+papers have explored and presented the similar concept. Therefore the
+valuable part is not the concept itself, but how we can use it to improve
+query processing's effectiveness and efficiency. This paper seems not
+good enough in providing so.
+
+1.In section 1 and section 2, the authors introduce the concept and four
+methods to break ties. However the discussion of tie-breaking methods
+seems irrelevant to following sections. The authors may consider making
+this part more concise or explaining clearly how these methods are
+related to their contributions.
+
+2.In section 3, it is interesting to study the score ties in conferences
+such as TREC. However the results reported in this paper is not obvious
+and impressive enough. It may be more significant to show results such
+as how score ties can affect the rankings of submitted runs and mislead
+the methods comparison.
+
+3.In section 4, the authors try to show us that different document
+rankings within ties can cause different retrieval effectiveness and
+the variance may be larger as ties become larger. The conclusion is
+very straightforward and it might not be impressive. The authors may
+consider discussing something more interesting such as how we can use
+ties to simplify retrieval functions or speed up query processing.
+
+4.In additional to this, tiering candidate documents based on their
+rankings rather than their score similarities is questionable. The authors
+fail to provide the advantages of doing so while its disadvantage is
+obvious: (1) re-ranking documents in position-based ties is more likely
+to hurt the effectiveness comparing to that in score-based ties, and (2)
+position-based tiering makes it harder to simplify retrieval functions
+than score-based tiers. The authors should better justify why they choose
+the tiering method.
+
+5.The title is misleading and there is little content about how precise
+evaluation scores need to be. The authors may consider changing it or
+adding more content and discussions about it.
+
+The paper overall is well presented. However its content is not novel
+and deep enough. The conclusion is too shallow and the contributions
+are not impressive. I would suggest the authors exploring further in
+this direction and resubmit later.
+
+
+----------------------- REVIEW 2 ---------------------
+PAPER: 33
+TITLE: How Precise Does Document Scoring Need To Be?
+AUTHORS: Ziying Yang, Alistair Moffat and Andrew Turpin
+
+OVERALL EVALUATION: 2 (Accept)
+REVIEWER'S CONFIDENCE: 3 (Knowledgeable: Knowledgeable in this sub-area)
+Originality of work: 2 (Conventional: Rather straightforward, a number of people could have come up with this)
+Potential impact of results: 2 (Limited: Impact limited to improving the state-of-the-art for the problem being tackled)
+Technical soundness: 3 (Reasonable: Generally solid work, but certain claims could be justified better)
+Quality of presentation: 4 (Good: Very well written in every aspect, a pleasure to read, easy to follow)
+Adequacy of citations: 4 (Comprehensive: Can't think of any important paper that is missed)
+Recommend as a short paper: yes
+
+----------- Review -----------
+This paper explored the implications of tied scores arising in the
+document similarity scoring regimes.  Their results showed that while
+tied scores had the potential to be disruptive to TREC evaluations, in
+practice their effect was relatively minor, which meant that quite marked
+levels of score rounding can be tolerated, without greatly affecting
+the ability to compare between systems. According to this conclusion,
+retrieval efficiency improvements might be achieved.  In short, I think
+this paper does show something novel.
+
+
+----------------------- REVIEW 3 ---------------------
+PAPER: 33
+TITLE: How Precise Does Document Scoring Need To Be?
+AUTHORS: Ziying Yang, Alistair Moffat and Andrew Turpin
+
+OVERALL EVALUATION: 2 (Accept)
+REVIEWER'S CONFIDENCE: 2 (Some familiarity: Generally aware of the area)
+Originality of work: 3 (Creative: Few people in our community would have put these ideas together)
+Potential impact of results: 3 (Broad: Could help ongoing research in a broader research community)
+Technical soundness: 4 (Thorough: The approach is attractive and all the claims are convincingly supported)
+Quality of presentation: 4 (Good: Very well written in every aspect, a pleasure to read, easy to follow)
+Adequacy of citations: 3 (Reasonable: Coverage of past work is acceptable, but a few papers are missing)
+Recommend as a short paper: no
+
+----------- Review -----------
+In this paper the authors conduct a series of investigations to understand
+how the tied similarity score from of a document retrieval system would
+impact the effectiveness under different evaluation metrics. Experimental
+evaluation includes two parts:
+
+1) What is the situation of tied scores in the existing retrieval systems
+and how the tied scores would impact the retrieval performance in terms
+of different evaluation metrics. They choose a set of submitted runs
+from TREC7 Ad-hoc task as sample and found that surprisingly, tied
+scores exist widely in many runs for certain reasons and some of them
+are actually contradicting with the actual document ranking. However,
+such tied scores do not lead to noticeable performance variation with
+different tie-breaking methods.
+
+2) How the retrieval effectiveness would change with regard to the
+amount of tied scores. They propose a novel method to inject tied scores
+to existing TREC runs deliberately and conduct a series of evaluation
+to compare the performance variation side by side. Results show that
+moderate tied scores would only affect the system performance comparison
+slightly.  The most interesting part of this paper is the implication
+of the experimental results: we could have retrieval efficiency gain by
+relaxing the precision requirement of similarity score in the document
+retrieval process. This paper would serve as the theoretical support on
+exploring faster retrieval methods like WAND.
+
+There are some minor issues need to be addressed:
+
+1) For the explanation of results in Table 3, the authors conclude
+that shallow metrics (RR, RBP0.5) are less sensitive to the value of
+\rho. However, based on the observation in Table 3, I feel that RBP0.85
+is less sensitive than RBP0.5 as more systems are left for the same
+setting of \rho.
+
+2) In the experimental setup for System Comparison Sensitivity, eleven
+different values of \rho are used to compare all the distinct system
+paris. However, only \rho = 1.4 is used in Figure 4. It is unclear why
+1.4 is chosen for \rho. Obviously, the smaller \rho is, the better the
+results and plot would support the conclusion. I think choosing \rho =
+1.4 might relate to the observation in Figure 3 where for \rho > 1.5,
+the performance variation of RBP0.5 would increase dramatically. I
+suggest the authors provide justification for their choice of 1.4 so
+readers would better understand the results. It would be even better
+if authors would present the variations of performance comparison with
+regard to all the eleven of \rho in a table.
+
+3) As \rho is introduced as a parameter to adjust the amount of
+tied scores in the retrieval results, it is not clear how would it be
+translated to the actual tied score percentage to serve as guideline of
+developing faster retrieval systems.
+
+Overall, this paper is well written and experiments are conducted properly
+and extensively. I would recommend it to be accepted with minor revision.
+
+Minor edits:
+Section 3, first paragraph: part of the 2008 TREC7 -> part of 1998 TREC7
+
