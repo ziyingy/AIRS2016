@@ -1,0 +1,42 @@
+Dear Alistair,
+ 
+You have already received the comments by the reviewers in a previous
+email. Please take them carefully into account when preparing your
+camera-ready paper for the proceedings. The final paper is due on
+
+   August 20
+
+This is a firm deadline for the production of the proceedings.  You should
+submit your paper using your EasyChair author account.  Please prepare
+your camera-ready paper according to Springer LNCS guidelines specified at
+http://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines.
+Note that the page limits for long papers and short papers are 12 pages,
+6 pages respectively.
+
+Also be aware of the following aspects:
+a)  While using colored figures and tables is OK, they should be also
+legible in greyscale since the printed proceedings will be in greyscale.
+b)  You may need to take care of any font-related issues (especially
+Asian fonts!)
+
+The proceedings authors should submit a  tar.gz or .zip file containing
+the following files:
+
+1. A pdf version of the final paper
+2. All the electronic files needed to compile it (source files, images or graphics, etc.) according to the instructions available on the
+Springer web site.
+3. Filled and signed copyright form downloadable from
+http://resource-cms.springer.com/springer-cms/rest/v1/content/731196/data/v1/LNCS+Copyright+Form
+Please specify the Volume Editors as Shaoping Ma, Ji-Rong Wen, Yiqun Liu,
+Zhicheng Dou, Yi Chang, Min Zhang, Ke Zhou and Wayne Xin Zhao. All the
+author names should be given in the form of (Given-name, Family-name),
+and specify the Title of the Book or Conference Name as "The Twelfth
+Asia Information Retrieval Societies Conference".
+
+If you have any question on the preparation of camera-ready paper,
+please contact the publication chair Wayne Xin Zhao (batmanfly@gmail.com).
+
+We greatly appreciate your cooperation in these matters. Thank you again
+for your contribution to AIRS 2016.
+
+Sincerely, Xin ZHAO (Publication Chair)
