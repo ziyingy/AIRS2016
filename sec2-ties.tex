@@ -4,15 +4,15 @@
 \myparagraph{Terminology}
 
 We suppose that the similarity scores generated for a query partition
-the document ranking -- the {\emph{run}} -- into {\emph{groups}} in
-which all of the documents have the same score.
+the document ranking -- the {\emph{run}} -- into {\emph{groups}}
+within which the documents have the same score.
 Let $b_g$ be the rank in the run at which the $g$\,th equi-score
 group commences, with, by definition, $b_1=1$; and let $e_g$ be the
 rank of the last document in that group, with $b_{g+1}=e_g+1$.
 That is, the $g$\,th group of tied documents spans the items
 $[b_g\ldots e_g]$, and contains $s_g=b_{g+1}-b_g$ documents.
-We further define $G_g$ to be the
-multiset of gain values in the $g$\,th group,
+We further define $G_g$ to be the multiset of gain values associated
+with the documents in the $g$\,th group,
 %%
 	$G_g =\{r_k\mid b_g \le k \le e_g\}$, 
 %%
@@ -22,7 +22,7 @@ to be the total gain associated with the $g$\,th group,
 %%
 	$t_g = \sum \{r_k\mid b_g \le k \le e_g\}$.
 %%
-For example, consider the ten-item ranking with scores shown in
+For example, consider the ten-item ranking shown in
 Figure~\ref{fig-example}, with each document given a single letter
 label for convenience, and with five different computed similarity
 scores.

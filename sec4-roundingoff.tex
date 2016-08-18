@@ -14,14 +14,13 @@ term proximity components are being used.
 Regimes such as WAND {\citep{bchsz03cikm}} seek to minimize the
 number of documents scored, while still giving rise to exactly the
 same ranking for the top-$k$ documents, an approach that meets the
-requirements for being {\emph{rank-safe to depth $k$}}.
+requirements for being {\emph{rank-safe to depth~$k$}}.
 That is, the WAND process ensures that all of the documents in the
-first $k$ positions of the ranking are in their ``right'' positions
-in the ranking that is generated, but makes no such guarantee for
-documents beyond depth $k$.
+first $k$ places of the ranking are in their right positions, but
+makes no guarantee for documents beyond depth $k$.
 This is a relatively stringent requirement, and other
 computation-pruning techniques might also be considered that provide
-alternative and more flexible trade-offs.
+more flexible trade-offs.
 
 In particular, we now consider the following weaker requirement: that
 each document must be scored in a manner that guarantees that it is
@@ -149,16 +148,17 @@ systems were removed as part of the experimental methodology.
 runs and $50$ topics (that is, $50 \times 80$ points are plotted in
 each column), as a function of $\rho$, for four different retrieval
 effectiveness metrics.
-The whiskers indicate the last outlier still within $1.5$ of the
-inter-quartile range from the corresponding quartile (the limits of
-the boxes), and then further outliers are plotted as separate colored
-points.
+The whiskers indicate the last outlier still within $1.5$ times of
+the inter-quartile range from the corresponding quartile (the limits
+of the boxes).
+%% Further outliers are plotted as separate points.
 \label{fig-score-variation}}
 \end{figure}
 
 Figure~\ref{fig-score-variation} shows the results of this
 experimentation, plotted as a sequence of box-whisker elements using
-four different effectiveness metrics and eleven values of $\rho$.
+four different effectiveness metrics and a single representative
+value of $\rho=1.4$.
 In all cases the score difference calculated is the
 across-permutations computation that was illustrated in
 Section~\ref{sec-ties} when applied to the deliberately-tied
@@ -180,14 +180,13 @@ differences.
 The average original metric scores across all system-topic
 combinations for RR, RBP0.5, RBP0.85, and AP are, respectively,
 %% these averages recomputed 16-06-27 based on all_scores_new.csv
-$0.6939$, $0.5556$, $0.4677$, and $0.2311$; and hence the fact that
-the AP score differences are smaller than the score differences for
-the other three metrics is in part a matter of relative scale.
+$0.6939$, $0.5556$, $0.4677$, and $0.2311$; and hence the
+smaller AP score differences are in part a matter of relative scale.
 The shallow metric RBP0.5 suffers the most from the score grouping
 process; even so, it is only when $\rho>1.5$, the first value for
 which ranks $2$ and $3$ are placed in the same group, that the
-difference becomes large.
-In all cases in which $\rho\le2$ the first group contains only a
+differences are large.
+When  $\rho\le2$ the first group alwyas contains a
 single document.
 
 \begin{table}[t!]
@@ -246,11 +245,12 @@ Those values are shown in the left half of
 Table~\ref{tbl-frac-significant}, and the corresponding counts when
 ``notably inferior'' is defined as being a $3$\% degradation are
 shown in the right half.
-The anticipated relationship between $\rho$ and score fidelity is
-supported by the table -- shallow metrics (RR, and RBP0.5) are less
-sensitive to the value of $\rho$ used than are deeper metrics, and as
-$\rho$ increases, the possible implications of changes in score also
-increase.
+The relationship between $\rho$ and score fidelity is
+reflected by the decreasing numbers down each column of the table,
+%% -- shallow metrics (RR, and RBP0.5) are less
+%% sensitive to the value of $\rho$ used than are deeper metrics,
+and as $\rho$ increases, the possible implications of changes in
+score also increase.
 When the ``tolerable degradation limit'' was further reduced to
 $95$\%, all $16$ entries for metric and $\rho$ were $80$.
 
@@ -258,7 +258,7 @@ $95$\%, all $16$ entries for metric and $\rho$ were $80$.
 
 Effectiveness measurements are also used to compare systems in a
 pairwise manner.
-In the second experiment, we explore the implications that score
+In a final experiment, we explore the implications that score
 rounding has on the ability of metrics to differentiate between
 systems.
 The normal approach to comparing systems is to take their computed
@@ -293,7 +293,7 @@ eleven different values of $\rho$, the set of $p$ values generated
 for the $80\times79/2$ distinct system pairs.
 In all cases when $\rho>1$, the averaging processes described in
 Section~\ref{sec-ties} were used; when $\rho=1$, each run was
-processed in resorted-by-score order, and then the scores were
+processed in sorted-by-score order, and then the scores were
 discarded.
 
 Figure~\ref{fig-pair-variation} shows that score grouping has almost
@@ -306,6 +306,6 @@ that $62.2$\% of the system pairs yield ``significant at $p=0.05$''
 comparison outcomes; at $\rho=1.4$, that fraction is $62.1\%$, with
 only $0.1$\% of false positives, and $0.2$\% false negatives.
 The situation is similar for the other metrics, with the
-discrimination ratios (down to $45$\% for RR) determined by the
-effective evaluation depth, and only a small fraction of false
+discrimination ratios (down to $45$\% for RR) determined primrily by
+the effective evaluation depth, and only a small fraction of false
 positives and negatives.
