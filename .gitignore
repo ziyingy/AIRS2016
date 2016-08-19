@@ -1,10 +1,10 @@
-p.aux
-p.bbl
-p.log
-p.dvi
-p.blg
+*.aux
+*.bbl
+*.log
+*.dvi
+*.blg
 p.pdf
-p.fls
+*.fls
 p.synctex.gz
 p.fdb_latexmk
 *~

@@ -1,5 +1,5 @@
 FYLE=p
-FINAL=spc161
+FINAL=yang-moffat-turpin
 
 pdf:
 	pdflatex $(FYLE)
@@ -15,6 +15,13 @@ final:	pdf bbl
 	pdflatex $(FINAL)
 	pdflatex $(FINAL)
 	pdflatex $(FINAL)
+	/bin/rm -f $(FINAL).zip
+	zip $(FINAL).zip \
+		Copyright.pdf \
+		$(FINAL).{tex,pdf} \
+		figs/fig-trec7-ap-scores.pdf \
+		figs/fig-score-variation-*.pdf \
+		figs/p_value_scatter_sys_pairs.pdf
 
 
 clean:
