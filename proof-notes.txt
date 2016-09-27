@@ -1,0 +1,32 @@
+AQ1: Retain Alistair Moffat as corresponding author.
+But please add other email addresses:
+
+	Ziying Yang
+	ziyingy@student.unimelb.edu.au
+
+	Andrew Turpin
+	aturpin@unimelb.edu.au
+
+Further linkage details for Alistair Moffat
+
+	OrchID: 0000-0002-6638-0232
+	Scopus ID: 35586971600
+
+Linkage detauils for Andrew Turpin:
+
+	OrchID: 0000-0003-2559-8769
+
+Please add these to the paper's meta-data.
+
+AQ2: The address as shown on the paper is correct.  The city needs
+to be "Melbourne", and not "Parkville" as you suggest.  (The Parkville
+location was changed around 10 years ago.)
+
+
+Other change: You have reformatted all of the tables for some reason.
+The columns are now uneven width, and there are many vertical and
+horizontal lines that make it difficult to view the tables.  Please
+revert to the original formatting that we supplied so that the
+tables can be absorbed by the reader.
+
+
